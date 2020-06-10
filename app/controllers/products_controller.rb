@@ -7,11 +7,18 @@ class ProductsController < ApplicationController
   end
 
   def new
-    
+    @product = Product.new
   end 
 
   def create
-
+    @product = Product.create(new_product_params)
+    if @product.save
+      flash[:status] = "Product Created!"
+      redirect_to products_path
+    else
+      render :new 
+      return
+    end 
   end 
 
   def edit 
@@ -23,6 +30,13 @@ class ProductsController < ApplicationController
   end 
 
   def destroy 
+
+  end 
+
+  private 
+
+  def new_product_params 
+  return params.require(:product).permit(:name, :price, :img_url, :description, :qty)
 
   end 
 end
