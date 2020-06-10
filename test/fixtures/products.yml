@@ -1,0 +1,13 @@
+product1:
+  name: Mask
+  price: 2.99
+  img_url: https://live.staticflickr.com/65535/49992513867_b7f9f8ffb0_m.jpg,
+  description: Watch out for germs
+  qty: 10
+
+product2:
+  name: poster
+  price: 9.99
+  img_url: https://live.staticflickr.com/65535/49991751098_c017304fc3_m.jpg,
+  description: Show where you stand
+  qty: 3
