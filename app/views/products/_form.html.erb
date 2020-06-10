@@ -1,0 +1,28 @@
+<div class="form"> 
+  <%= form_with model: @product do |f| %>
+
+     <div> 
+    <%= f.label "Category:" %>
+    <%= f.select :category, options_for_select(Category.category_options) %>
+    </div> 
+    
+  
+    <%= f.label "Name:" %>
+    <%= f.text_field :name, placeholder: "#{name}" %>
+  
+    <%= f.label "Price:" %>
+    <%= f.text_field :price, placeholder: "#{price}"%>
+
+    <%= f.label "Image Url:" %>
+    <%= f.text_field :img_url, placeholder: "#{img_url}" %>
+
+    <%= f.label "Description:", placeholder: "#{description}" %>
+    <%= f.text_field :description %>
+
+    <%= f.label "Quantity:" %>
+    <%= f.text_field :qty, placeholder: "#{qty}" %>
+
+
+    <%= f.submit "#{action_name} Product", class: "product-button" %>
+  <% end %>
+</div> 
