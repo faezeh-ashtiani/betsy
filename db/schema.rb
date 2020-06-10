@@ -21,11 +21,11 @@ ActiveRecord::Schema.define(version: 2020_06_10_174232) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "categories_products", force: :cascade do |t|
-    t.bigint "category_id"
+  create_table "categories_products_joins", force: :cascade do |t|
+    t.bigint "catagory_id"
     t.bigint "product_id"
-    t.index ["category_id"], name: "index_categories_products_on_category_id"
-    t.index ["product_id"], name: "index_categories_products_on_product_id"
+    t.index ["catagory_id"], name: "index_categories_products_joins_on_catagory_id"
+    t.index ["product_id"], name: "index_categories_products_joins_on_product_id"
   end
 
   create_table "merchants", force: :cascade do |t|
