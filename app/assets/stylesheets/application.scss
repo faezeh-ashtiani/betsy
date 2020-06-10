@@ -16,3 +16,16 @@
 @import "bootstrap";
 
 @import "**/*";
+
+
+nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 80%; 
+  list-style: none;
+  height: 20%;
+}
+nav > li > a,  ul > li > a {
+  color: black;
+  text-decoration: underline;
+}
