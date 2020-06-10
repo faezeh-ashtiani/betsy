@@ -1,7 +1,6 @@
-  <div class="dropdown"> 
-    <%= f.label "Category:" %>
-    <%= f.select :category, options_for_select(Category.category_options) %>
-  </div> 
+ 
 
+
+<%= render partial: "form", locals: { action_name: "Add", name: "", price: "", img_url: "", description: "", qty: "" } %>
 
 
