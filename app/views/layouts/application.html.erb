@@ -27,8 +27,9 @@
       <li class="dropdown-submenu">
         <a class="test" tabindex="-1" href="#">By Category <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a tabindex="-1" href="#">Protesting</a></li>
-          <li><a tabindex="-1" href="#">Quarantine Essentials</a></li>
+          <% Category.all.each do |category| %>
+          <li><%= link_to category.name, category_products_path(category.id) %></li>
+          <% end %>
         </ul>
       </li>
       <li class="dropdown-submenu">
