@@ -9,37 +9,36 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
   </head>
 
-  <header> 
-  <h1> Forever 2020 </h1>
-
-  #product, login, lgout, cart
+<header> 
+  <h1 class='main-header'> Forever 2020 </h1>
   
 <nav class="dropdown">
     <li class="navbar-item"><%= link_to "Cart", root_path, class: "nav-link" %> </li> 
     <li class="navbar-item"><%= link_to "Login", root_path, class: "nav-link" %> </li> 
     <li class="navbar-item"><%= link_to "Add New Product", root_path, class: "nav-link" %> </li> 
-    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Products<span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <li><a tabindex="-1" href="#"></a></li>
-      <li><a tabindex="-1" href="#">Products</a></li>
-      <li class="dropdown-submenu">
-        <a class="test" tabindex="-1" href="#">By Category <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a tabindex="-1" href="#">Protesting</a></li>
-          <li><a tabindex="-1" href="#">Quarantine Essentials</a></li>
-        </ul>
-      </li>
-      <li class="dropdown-submenu">
-        <a class="test" tabindex="-1" href="#">By Merchant <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a tabindex="-1" href="#">Merchant 1</a></li>
-          <li><a tabindex="-1" href="#">Merchant 2</a></li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
+    <li class="navbar-item dropdown-toggle main-drop" type="button" data-toggle="dropdown">Products<span class="caret"></span></li>
+      <ul class="dropdown-menu">
+      
+        
+        <li class="dropdown-submenu">
+          <a class="test" tabindex="-1" href="#">By Category <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a tabindex="-1" href="#">Protesting</a></li>
+            <li><a tabindex="-1" href="#">Quarantine Essentials</a></li>
+          </ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a class="test" tabindex="-1" href="#">By Merchant <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a tabindex="-1" href="#">Merchant 1</a></li>
+            <li><a tabindex="-1" href="#">Merchant 2</a></li>
+          </ul>
+        </li>
+      </ul>
+</nav>
 
 
 <script>

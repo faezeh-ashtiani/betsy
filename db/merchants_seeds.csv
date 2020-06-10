@@ -1,0 +1,5 @@
+username,email,uid,provider
+jlen, john@beatles.com, 1, github
+pmcart, paul@beatles.com, 2, github
+gharr, george@beatles.com, 3, github
+rstarr, ringo@beatles.com, 4, github

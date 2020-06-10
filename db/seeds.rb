@@ -57,6 +57,29 @@ Product.all.each do |product|
   product.save
 end
 
+MERCHANT_FILE = Rails.root.join('db', 'merchants_seeds.csv')
+puts "Loading raw merchant data from #{MERCHANT_FILE}"
+
+merchant_failures = []
+CSV.foreach(MERCHANT_FILE, :headers => true) do |row|
+  merchant = Merchant.new
+  merchant.username = row['username']
+  merchant.email = row['email']
+  merchant.uid = row['uid']
+  merchant.provider = row['provider']
+  
+  successful = merchant.save
+  if !successful
+    merchant_failures << merchant
+    puts "Failed to save merchant: #{merchant.inspect}"
+  else
+    puts "Created merchant: #{merchant.inspect}"
+  end
+end
+
+puts "Added #{Merchant.count} merchant records"
+puts "#{merchant_failures.length} merchant failed to save"
+
 # Since we set the primary key (the ID) manually on each of the
 # tables, we've got to tell postgres to reload the latest ID
 # values. Otherwise when we create a new record it will try
