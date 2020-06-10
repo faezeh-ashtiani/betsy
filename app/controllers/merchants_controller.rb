@@ -11,7 +11,7 @@ class MerchantsController < ApplicationController
       if merchant.save 
         #flash
       else
-        #flash[:error] = "Could not create new user account: #{user.errors.messages}"
+        flash[:error] = "Could not create new user account"
         return redirect_to root_path
         
       end
