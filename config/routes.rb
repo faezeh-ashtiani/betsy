@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   resources :products
   resources :carts
   resources :order_items
-  resources :categories
+  resources :categories 
+
+  get '/categories/:category_id/products', to: 'products#category_products', as: 'category_products'
+  
   resources :reviews
   
 
