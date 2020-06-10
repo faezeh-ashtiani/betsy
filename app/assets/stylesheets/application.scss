@@ -16,9 +16,22 @@
 @import "bootstrap";
 
 @import "**/*";
+*{
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+header {
+  text-align: center;
+  padding: 5% 0 5% 0;
+} 
+
+.main-header {
+  margin-bottom: 3%;
+}
 
 
 nav {
+  margin-left:10%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   width: 80%; 
