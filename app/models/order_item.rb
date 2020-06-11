@@ -15,14 +15,15 @@ class OrderItem < ApplicationRecord
 
       product = Product.find_by(id: item["product_id"])
 
-      if unique_items[product] 
-        unique_items[product] += qty
-      else
-        unique_items[product] = qty
-      end
+        if unique_items[product] 
+          unique_items[product] += qty
+        else
+          unique_items[product] = qty
+        end
+      end 
       return unique_items 
+    
     end 
-  end 
 
     def self.remove_from_cart(session, product_id)
       updated_cart =  []
