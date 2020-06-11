@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
 
   before_action :require_login, only: [:new, :create, :destroy, :edit]
+  before_action :find_product, only: [:show, :edit, :update, :destroy]
 
   def index
     @products = Product.all
@@ -9,6 +10,13 @@ class ProductsController < ApplicationController
   def category_products
     @category = Category.find_by_id(params[:category_id])
     @category_products = @category.products #.sort{ |a, b| b.average_rating <=> a.average_rating }
+  end
+
+  def show
+    if @product.nil?
+      head :not_found
+      return
+    end
   end
 
   def new
@@ -43,5 +51,9 @@ class ProductsController < ApplicationController
   def new_product_params 
     return params.require(:product).permit(:name, :price, :img_url, :description, :qty)
   end 
+
+  def find_product
+    @product = Product.find_by(id: params[:id])
+  end
   
 end

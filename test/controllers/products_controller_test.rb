@@ -33,4 +33,32 @@ describe ProductsController do
       must_respond_with :success
     end
   end
+
+  describe "show" do
+    before do
+      @product = Product.first
+    end
+
+    it "will get show for valid ids" do
+      # Arrange
+      valid_product_id = @product.id
+  
+      # Act
+      get "/products/#{valid_product_id}"
+  
+      # Assert
+      must_respond_with :success
+    end
+  
+    it "will respond with not_found for invalid ids" do
+      # Arrange
+      invalid_product_id = -1
+  
+      # Act
+      get "/products/#{invalid_product_id}"
+  
+      # Assert
+      must_respond_with :not_found
+    end
+  end
 end

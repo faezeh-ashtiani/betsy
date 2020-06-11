@@ -1,12 +1,13 @@
 <h2><%= list_name %></h2>
+<h4><%= "#{variable.count} products" %></h4>
 <main class='product-index'> 
 <% variable.each do |product| %>
   <section class="product_square">
 
-    <h4><%= product.name %></h4>
-    <img src=<%=product.img_url%>  alt= <%=product.description%> >
-    <h5><%= product.description %></h4>
-    <h5><%= product.price %></h4>
+    <%= image_tag product.img_url, alt: product.description %>
+    <h4><%= link_to product.name, product_path(product.id) %></h4>
+    <h5><%# product.description %></h5>
+    <h6><%= product.price %></h6>
     
   </section>
 <% end %>
