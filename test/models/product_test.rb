@@ -36,8 +36,25 @@ describe Product do
       
       expect(product3.categories.length).must_equal 0
     end
-  
+  end
 
-   
+  # describe "order relations" do
+  
+  #   let(:product) { products(:product1) }
+  
+  #   it "can have many orders" do
+  #     Order.create(name: "chelsea", credit_card: 100, qty: 2, product_id: product.id)
+  #     Order.create(name: "boo", credit_card: 121, qty: 3, product_id: product.id)
+
+  #     expect(product.orders.length).must_equal 2
+  #     expect(product.orders.first.name).must_equal "chelseat"
+  #     expect(product.orders.last.name).must_equal "boo"
+  #   end
+    
+  #   it "can have zero orders" do
+  #     product3 = products(:product3)
+      
+  #     expect(product3.orders.length).must_equal 0
+  #   end
   end
 end
