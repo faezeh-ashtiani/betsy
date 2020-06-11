@@ -7,7 +7,7 @@
     <%= image_tag product.img_url, alt: product.description %>
     <h4><%= link_to product.name, product_path(product.id) %></h4>
     <h5><%# product.description %></h5>
-    <h6><%= product.price %></h6>
+    <h6>$<%= sprintf('%.2f', product.price) %></h6>
     
   </section>
 <% end %>
