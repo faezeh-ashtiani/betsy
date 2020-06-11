@@ -22,6 +22,7 @@ class OrderItem < ApplicationRecord
       end
       return unique_items 
     end 
+  end 
 
     def self.remove_from_cart(session, product_id)
       updated_cart =  []
@@ -32,5 +33,6 @@ class OrderItem < ApplicationRecord
       end
       return updated_cart
     end 
+
  
 end
