@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback", to: "merchants#create"
 
   resources :merchants
+  
+  get '/merchant/:merchant_id/products', to: 'merchants#merchant_products', as: 'merchant_products'
+
   resources :products
   resources :orders, only: [:new, :create]
   resources :categories 

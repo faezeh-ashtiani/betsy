@@ -19,4 +19,9 @@ class MerchantsController < ApplicationController
     session[:user_id] = user.id
     redirect_to root_path
   end
+
+  def merchant_products
+    @merchant = Merchant.find_by_id(params[:merchant_id])
+    @merchant_products = @merchant.products 
+  end
 end
