@@ -10,4 +10,10 @@ class Merchant < ApplicationRecord
 
     return merchant 
   end 
+
+  def merchant_products
+    @merchant = Merchant.find_by(id: params[:id])
+    @merchant_products = @merchant.products 
+  end
+  
 end
