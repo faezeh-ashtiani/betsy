@@ -10,14 +10,13 @@ class OrderItemController < ApplicationController
     redirect_to product_path(params[:id])
   end 
 
-  def cart
-    @cart = [] 
-    session[:order_items].each do |order_item|
-        product = Product.find_by(id: order_item["product_id"])
-      if !product.nil?
-        @cart << product.name
-      end 
-    end
-    return @cart
+  def cart 
+    if session[:order_items].nil? 
+      redirect_to root_path
+    else
+
+      @cart = OrderItem.unique_items(session[:order_items])
+      return @cart
+    end 
   end 
 end
