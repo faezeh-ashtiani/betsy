@@ -38,23 +38,28 @@ describe Product do
     end
   end
 
-  # describe "order relations" do
-  
-  #   let(:product) { products(:product1) }
-  
-  #   it "can have many orders" do
-  #     Order.create(name: "chelsea", credit_card: 100, qty: 2, product_id: product.id)
-  #     Order.create(name: "boo", credit_card: 121, qty: 3, product_id: product.id)
 
-  #     expect(product.orders.length).must_equal 2
-  #     expect(product.orders.first.name).must_equal "chelseat"
-  #     expect(product.orders.last.name).must_equal "boo"
-  #   end
+  describe "order_items relations" do
+  
+    let(:order_item) { order_items(:order_item1) }
+  
+    it "product has many order items" do 
+      expect(order_item.product.name).must_equal "Mask"
+    end
     
-  #   it "can have zero orders" do
-  #     product3 = products(:product3)
-      
-  #     expect(product3.orders.length).must_equal 0
-  #   end
+  end
+  
+
+  describe "order relations" do
+  
+    it 'order has product through order item' do
+      order = orders(:order1)
+      product1 = products(:product1)
+    
+      order.order_items.each do |item|
+        expect(item.product_id).must_equal product1.id
+      end
+
+    end
   end
 end
