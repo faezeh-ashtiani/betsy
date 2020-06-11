@@ -6,7 +6,7 @@
     <h4><%= product.name %></h4>
     <img src=<%=product.img_url%>  alt= <%=product.description%> >
     <h5><%= product.description %></h4>
-    <h5><%= product.price %></h4>
+    <h5>$<%= sprintf('%.2f', product.price) %></h4>
     
   </section>
 <% end %>
