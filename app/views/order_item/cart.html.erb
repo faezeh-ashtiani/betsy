@@ -7,7 +7,10 @@
   <h5><%= product.description %></h4>
   <h6><%= product.price %></h6>
   <p> Quantity: <%= val %> </p>
+  <%= link_to 'Delete', remove_from_cart_path(product.id), method: :post %>
+  <%= link_to "Edit", product_path(product.id) %>
 <% end %>
 
-
-<%= link_to "Check Out", new_order_path %>
+<div> 
+  <%= link_to "Check Out", new_order_path %>
+</div> 
