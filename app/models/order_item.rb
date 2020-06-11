@@ -3,18 +3,12 @@ class OrderItem < ApplicationRecord
   belongs_to :order
 
 
-
-
+  
   def self.unique_items(order_items) 
-
     unique_items = {}
-    
     order_items.each do |item|
-    
       qty = item["qty"]
-
       product = Product.find_by(id: item["product_id"])
-
         if unique_items[product] 
           unique_items[product] += qty
         else
@@ -22,7 +16,6 @@ class OrderItem < ApplicationRecord
         end
       end 
       return unique_items 
-    
     end 
 
     def self.remove_from_cart(session, product_id)
@@ -34,6 +27,4 @@ class OrderItem < ApplicationRecord
       end
       return updated_cart
     end 
-
- 
 end
