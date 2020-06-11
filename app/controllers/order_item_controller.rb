@@ -11,9 +11,9 @@ class OrderItemController < ApplicationController
   end 
 
   def remove_from_cart 
-    session[:order_items] = OrderItem.remove_from_cart(session["order_items"], params["format"].to_i)
-    #THIS IS PARAMS: {"_method"=>"delete", "authenticity_token"=>"xxp4QJVjqTNKxmdNcR6GlEz4S1fN5m54uplkVFD4sEBFKL/K81Rfextg5H0P3CXm57eZ1CRNcdqPwMESDSG77w==", "controller"=>"order_item", "action"=>"remove_from_cart", "format"=>"8"}
-    puts params
+    puts "THIS IS SESSION in CONT #{session[:order_items]}"
+    session[:order_items] = OrderItem.remove_from_cart(session[:order_items], params["format"])
+    redirect_to cart_path
   end 
 
 
