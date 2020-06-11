@@ -1,0 +1,5 @@
+merchant1:
+  username: testmerchant
+  email: tm@merch.com
+  uid:  1
+  provider: github
