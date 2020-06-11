@@ -4,3 +4,15 @@
   <h5><%= @product.description %></h4>
   <h6><%= @product.price %></h6>
 </div>
+
+
+
+
+<div class="form">
+     <%= form_with scope: :post, url: add_to_cart_path do |f| %>
+        <%= f.label "Quantity:" %>
+        <%= f.text_field :title %>
+
+        <%= f.submit "Add to Cart" %>
+     <% end %>
+</div>

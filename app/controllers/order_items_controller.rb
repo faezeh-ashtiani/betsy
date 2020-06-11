@@ -6,11 +6,15 @@ class OrderItemsController < ApplicationController
     #   order = Order.create()
     #   session[:order_id] = order.id
     # end 
-
-    session[:order_items] << OrderItems.create(qty: params[:qty], product_id: @product.id)
+    if session[:order_items] 
+      session[:order_items] << OrderItems.create(qty: params[:qty], product_id: @product.id)
+    else
+      session[:order_items] = []
+      session[:order_items] << OrderItems.new(qty: params[:qty], product_id: @product.id)
+    end 
       
     
-    order_items = OrderItems(qty: params[:qty], product_id: @product.id)
+    
 
   end 
 
