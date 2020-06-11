@@ -1,23 +1,28 @@
 class OrderItem < ApplicationRecord
+  belongs_to :product
+  belongs_to :order
 
-    def self.unique_items(order_items) 
 
-      unique_items = {}
-      
-      order_items.each do |item|
-        puts "THISSS item #{item}"
-        qty = item["qty"]
+  def self.unique_items(order_items) 
 
-        product = Product.find_by(id: item["product_id"])
+    unique_items = {}
+    
+    order_items.each do |item|
+      puts "THISSS item #{item}"
+      qty = item["qty"]
 
-        if unique_items[product] 
-          unique_items[product] += qty
-        else
-          unique_items[product] = qty
-        end 
+      product = Product.find_by(id: item["product_id"])
+
+      if unique_items[product] 
+        unique_items[product] += qty
+      else
+        unique_items[product] = qty
       end 
-      puts "THIS IS UNIQUE ITEMS : " + unique_items.to_s
-      return unique_items 
     end 
+    puts "THIS IS UNIQUE ITEMS : " + unique_items.to_s
+    return unique_items 
+  end 
   
+
+ 
 end

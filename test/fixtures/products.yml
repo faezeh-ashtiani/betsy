@@ -5,6 +5,7 @@ product1:
   description: Watch out for germs
   qty: 10
   categories: category1, category3
+  # order_items: order_item1
 
 
 product2:

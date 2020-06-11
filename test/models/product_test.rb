@@ -39,30 +39,27 @@ describe Product do
   end
 
 
-  # describe "order_items relations" do
+  describe "order_items relations" do
   
-  #   let(:order_item) { order_items(:order_item2) }
+    let(:order_item) { order_items(:order_item1) }
   
-  #   it "product has an order item" do
-  #     product = products(:product3)
-  #     order_item.product_id = product.id
+    it "product has many order items" do 
+      expect(order_item.product.name).must_equal "Mask"
+    end
     
-  #     expect(order_item.products.first.name).must_equal "marker"
-  #   end
+  end
+  
+
+  describe "order relations" do
+  
+    it 'order has product through order item' do
+      order = orders(:order1)
+      product1 = products(:product1)
     
-  
-  # end
+      order.order_items.each do |item|
+        expect(item.product_id).must_equal product1.id
+      end
 
-  # describe "order relations" do
-  
-  #   it 'set order product_id through product' do
-
-  #   order1 = orders(:order1)
-  #   product1 = products(:product1)
-  #   order1.product_id = product1.id
-
-  #   expect(order1.products).must_equal product1
-      
-  #   end
-  # end
+    end
+  end
 end
