@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get '/categories/:category_id/products', to: 'products#category_products', as: 'category_products'
 
   post 'order/check-out', to: 'order#check_out', as: 'check_out'
-  post 'products/:id/add-to-cart', to: 'order_items#add_to_cart', as: 'add_to_cart'
+  post 'products/:id/add-to-cart', to: 'order_item#add_to_cart', as: 'add_to_cart'
   
   resources :reviews
   
