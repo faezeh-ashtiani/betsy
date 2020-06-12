@@ -6,3 +6,15 @@
   <h6>Average Rating: <%= @product.average_rating %></h6>
   <%= render partial: "reviews/rating", locals: { action_name: "Submit Review", product: @product } %>
 </div>
+</div>
+
+
+ <div class="form">
+     <%= form_with scope: :post, url: add_to_cart_path do |f| %>
+         <%= f.label "Quantity:" %>
+         <%= f.text_field :qty %>
+
+         <%= f.submit "Add to Cart" %>
+      <% end %>
+</div>  
+

@@ -16,7 +16,7 @@
   <h1 class='main-header'><%= link_to "Forever 2020", root_path %></h1>
   
 <nav class="dropdown">
-  <li class="navbar-item"><%= link_to "Cart", root_path, class: "nav-link" %> </li> 
+  <li class="navbar-item"><%= link_to "Cart", cart_path, class: "nav-link" %> </li> 
   <li class="navbar-item"><%= link_to "Login", root_path, class: "nav-link" %> </li> 
   <li class="navbar-item"><%= link_to "Add New Product", root_path, class: "nav-link" %> </li> 
   <li class="navbar-item dropdown-toggle main-drop" type="button" data-toggle="dropdown">Products<span class="caret"></span></li>
@@ -32,8 +32,9 @@
       <li class="dropdown-submenu">
         <a class="test" tabindex="-1" href="#">By Merchant <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a tabindex="-1" href="#">Merchant 1</a></li>
-          <li><a tabindex="-1" href="#">Merchant 2</a></li>
+          <% Merchant.all.each do |merchant| %>
+            <li><%= link_to merchant.username, merchant_products_path(merchant.id) %></li>
+          <% end %>
         </ul>
       </li>
     </ul>

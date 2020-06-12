@@ -1,0 +1,20 @@
+  <%= form_with model: @order do |f| %>
+
+    <%= f.label "Name:" %>
+    <%= f.text_field :name %>
+  
+    <%= f.label "Credit Card Number:" %>
+    <%= f.text_field :credit_card %>
+
+    <%= f.label "CVV:" %>
+    <%= f.text_field :cvv %>
+
+    <%= f.label "Email:" %>
+    <%= f.text_field :email %>
+
+    <%= f.label "Mailing Address:" %>
+    <%= f.text_field :mailing_address %>
+       
+
+    <%= f.submit "Place Order" %>
+<%end%>

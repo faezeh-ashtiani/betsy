@@ -1,29 +1,65 @@
 require "test_helper"
 
 describe Product do
-  describe "relations" do
-    # it "can have reviews" do
-    #   mask = products(:product1)
 
-    #   review = Review.create!(rating: 4, description: 'awesome', product_id: mask.id)
-    #   expect(mask.review).must_be_kind_of review
-    # end
-
-    it "has category/s" do
-      mask = products(:product1)
-      expect(mask.category_ids).must_be_kind_of Array
-
-      mask.category_ids.each do |category|
-        expect(category).must_be_kind_of category
-      end
+  describe "review relations" do
+    let(:product) { products(:product1) }
+  
+    
+    it "can have many reviews" do
+      Review.create(rating: 3, description: "great", product_id: product.id)
+      Review.create(rating: 4, description: "ok", product_id: product.id)
+      
+      expect(product.reviews.length).must_equal 2
     end
+    
+    it "can have zero reviews" do
+      product2 = products(:product2)
+      
+      expect(product2.reviews.length).must_equal 0
+    end
+  end
 
-    # it "has a list of ranked works" do
-    #   dan = users(:dan)
-    #   expect(dan).must_respond_to :ranked_works
-    #   dan.ranked_works.each do |work|
-    #     expect(work).must_be_kind_of Work
-    #   end
-   
+  describe "category relations" do
+  
+    let(:product) { products(:product1) }
+  
+    it "can have many categories" do
+      
+      expect(product.categories.length).must_equal 2
+      expect(product.categories.first.name).must_equal "Protest"
+      expect(product.categories.last.name).must_equal "Covid 19"
+    end
+    
+    it "can have zero categories" do
+      product3 = products(:product3)
+      
+      expect(product3.categories.length).must_equal 0
+    end
+  end
+
+
+  describe "order_items relations" do
+  
+    let(:order_item) { order_items(:order_item1) }
+  
+    it "product has many order items" do 
+      expect(order_item.product.name).must_equal "Mask"
+    end
+    
+  end
+  
+
+  describe "order relations" do
+  
+    it 'order has product through order item' do
+      order = orders(:order1)
+      product1 = products(:product1)
+    
+      order.order_items.each do |item|
+        expect(item.product_id).must_equal product1.id
+      end
+
+    end
   end
 end
