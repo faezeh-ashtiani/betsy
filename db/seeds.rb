@@ -13,24 +13,16 @@ puts "Loading raw product data from #{PRODUCT_FILE}"
 
 product_failures = []
 CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
-  product = Product.new
-  product.id = row['id']
-  product.name = row['name']
-  product.price = row['price']
-  product.img_url = row['img_url']
-  product.qty = row['qty']
-  product.description = row['description']
-  successful = product.save
-  if !successful
-    product_failures << product
-    puts "Failed to save product: #{product.inspect}"
+  if !Product.create!(id: row['id'] , name:row['name'] , price:row['price'] , img_url: row['img_url'], qty:row['qty'] , description: row['description'], merchant_id: Merchant.create().id)
+    # product_failures << product
+    puts "Failed to save product: "
   else
-    puts "Created product: #{product.inspect}"
+    puts "Created product"
   end
 end
 
 puts "Added #{Product.count} product records"
-puts "#{product_failures.length} product failed to save"
+#uts "#{product_failures.length} product failed to save"
 
 CATEGORY_FILE = Rails.root.join('db', 'categories_seeds.csv')
 puts "Loading raw product data from #{CATEGORY_FILE}"

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   #quin ---- 
   get 'guest/cart', to: 'order_item#cart', as: 'cart'
   post 'order/check-out', to: 'order#check_out', as: 'check_out'
-  post 'products/:id/add-to-cart', to: 'order_items#add_to_cart', as: 'add_to_cart'  
+  post 'products/:id/add-to-cart', to: 'order_item#add_to_cart', as: 'add_to_cart'  
  
   post 'guest/cart/remove', to: 'order_item#remove_from_cart', as: 'remove_from_cart'
   #---- quin did this please keep
