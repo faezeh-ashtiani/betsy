@@ -1,12 +1,11 @@
 <div class="form"> 
   <%= form_with model: @product do |f| %>
 
-     <div> 
-    <%= f.label "Category:" %>
-    <%= f.select :category, options_for_select(Category.category_options) %>
-    </div> 
+    <div>
+    <%= f.label :category %>
+    <%= collection_check_boxes(:product, :category_ids, Category.all, :id, :name) %>
+    </div>
     
-  
     <%= f.label "Name:" %>
     <%= f.text_field :name, placeholder: "#{name}" %>
   

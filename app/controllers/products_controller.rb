@@ -24,10 +24,13 @@ class ProductsController < ApplicationController
   end 
 
   def create
-    @product = Product.create(new_product_params)
+    @product = Product.new(new_product_params)
+    @product.merchant_id = session[:user_id]
+   
     if @product.save
       flash[:status] = "Product Created!"
-      redirect_to products_path
+      
+      redirect_to product_path(@product.id)
     else
       render :new 
       return
@@ -49,7 +52,7 @@ class ProductsController < ApplicationController
   private 
 
   def new_product_params 
-    return params.require(:product).permit(:name, :price, :img_url, :description, :qty)
+    return params.require(:product).permit(:name, :price, :img_url, :description, :qty, category_ids: [])
   end 
 
   def find_product
