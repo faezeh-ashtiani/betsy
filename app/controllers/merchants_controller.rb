@@ -16,7 +16,7 @@ class MerchantsController < ApplicationController
         
       end
     end 
-    session[:user_id] = user.id
+    session[:user_id] = merchant.id
     redirect_to root_path
   end
 
