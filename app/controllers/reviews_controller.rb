@@ -6,13 +6,11 @@ class ReviewsController < ApplicationController
     if @product
       @review = Review.new(new_review_params)
       @review.product_id = @product.id
-      # raise
+
       if @review.save
         flash[:success] = "Successful!"
       else
         flash.now[:warning] = "A problem occurred: Could not review"
-        # render :new
-        # return
       end
       redirect_to request.referrer || product_path(@product.id)
     end
@@ -22,10 +20,10 @@ class ReviewsController < ApplicationController
   private
 
   def new_review_params 
-    params.permit(:rating, :description)
+    params.require(:review).permit(:rating, :description)
   end
 
   def find_product
-    @product = Product.find_by(id: params[:id])
+    @product = Product.find_by(id: params.require(:product_id))
   end
 end

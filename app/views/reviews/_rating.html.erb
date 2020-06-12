@@ -1,15 +1,14 @@
-<% if @product.errors.any? %>
+<% if product.errors.any? %>
   <ul class="errors">
-    <% @product.errors.each do |column, message| %>
+    <% product.errors.each do |column, message| %>
       <li>
         <strong><%= column.capitalize %></strong> <%= message %>
       </li>
     <% end %>
   </ul>
 <% end %>
-<%= form_with model: @review, url: product_reviews_path, class: 'review-form-container' do |f| %>
+<%= form_with model: Review.new, url: product_reviews_path(product), class: 'review-form-container' do |f| %>
   <div>
-    <%= f.label :"" %>
     <%= f.select :rating, ["rating", 1, 2, 3, 4, 5] %>
   </div>
   <div>
