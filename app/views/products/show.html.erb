@@ -2,7 +2,7 @@
   <h3><%= @product.name %></h3>
   <%= image_tag @product.img_url, alt: @product.description %>
   <h5><%= @product.description %></h4>
-  <h6><%= @product.price %></h6>
+  <h6><%= "$#{'%.2f' % @product.price}" %></h6>
   <h6>Average Rating: <%= @product.average_rating %></h6>
   <%= render partial: "reviews/rating", locals: { action_name: "Submit Review", product: @product } %>
 </div>
