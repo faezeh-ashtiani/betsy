@@ -10,14 +10,15 @@ Rails.application.routes.draw do
   resources :products
   resources :carts
   resources :order_items
-  resources :categories 
+  resources :categories
+  
 
   get '/categories/:category_id/products', to: 'products#category_products', as: 'category_products'
-
   post 'order/check-out', to: 'order#check_out', as: 'check_out'
   post 'products/:id/add-to-cart', to: 'order_items#add_to_cart', as: 'add_to_cart'
+  post 'products/:id/reviews', to: 'reviews#create', as: 'product_reviews'
   
-  resources :reviews
+  # resources :reviews, only: [:new, :create] 
   
 
 end
