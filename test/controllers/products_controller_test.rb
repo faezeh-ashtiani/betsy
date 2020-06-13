@@ -61,15 +61,15 @@ describe ProductsController do
       must_respond_with :not_found
     end
 
-    describe "new" do
-      it "can get the new_product_path" do
-        get new_product_path
+    # describe "new" do
+    #   it "can get the new_product_path" do
+    #     get new_product_path
   
-        must_respond_with :success
-      end
+    #     must_respond_with :success
+    #   end
   
       
-    end
+    # end
 
   end
 end
