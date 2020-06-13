@@ -1,16 +1,13 @@
 order_item1:
   qty: 2
-  product: product1
-  order: order1
+  product_id: 4
   
 
 order_item2:
   qty: 3
-  product: product2
-  order: order2
+  product_id: 4
 
 order_item3:
   qty: 3
-  product: product2
-  order: order2
+  product_id: 3
   
