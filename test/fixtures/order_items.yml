@@ -3,7 +3,6 @@ order_item1:
   product: product1
   order: order1
   
-
 order_item2:
   qty: 3
   product: product2
