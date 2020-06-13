@@ -51,33 +51,17 @@ $(document).ready(function(){
 });
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  </header>
+<div>
+  <% if flash %>
+    <% flash.each do |key, val| %>
+      <%= val %>
+    <%end %>
+  <%end %>
 
 
   
-  </header>
+</div>
 
   <body>
     <%= yield %>

@@ -1,7 +1,23 @@
 require "test_helper"
 
 describe OrderItem do
-  # it "does a thing" do
-  #   value(1+1).must_equal 2
-  # end
+  describe "cart" do 
+    it "will have unique products (keys)" do 
+
+
+
+
+
+    end 
+
+    it "will remove product from cart" do 
+
+
+
+    end 
+
+
+
+
+  end 
 end

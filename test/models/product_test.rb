@@ -3,8 +3,7 @@ require "test_helper"
 describe Product do
 
   describe "review relations" do
-    let(:product) { products(:product1) }
-  
+    let(:product) { products(:product1) }  
     
     it "can have many reviews" do
       Review.create(rating: 3, description: "great", product_id: product.id)
@@ -62,4 +61,22 @@ describe Product do
 
     end
   end
+
+  describe "custome methods" do
+    
+    describe "average rating" do
+      it "can calculate the average rating for a product with many ratings" do
+        Review.create(rating: 3, description: "great", product_id: products(:product1).id)
+        Review.create(rating: 4, description: "ok", product_id: products(:product1).id)
+
+        expect(products(:product1).average_rating).must_equal 3.5
+      end
+
+      it "average rating of a product with no review is zero" do
+        expect(products(:product1).average_rating).must_equal 0
+      end
+    end
+
+  end
+
 end

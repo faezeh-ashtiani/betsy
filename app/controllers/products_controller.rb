@@ -17,6 +17,7 @@ class ProductsController < ApplicationController
       head :not_found
       return
     end
+    @reviews = @product.reviews
   end
 
   def new
