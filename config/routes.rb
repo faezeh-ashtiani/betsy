@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :products do
     resources :reviews, only: [:create]
   end
-  resources :orders, only: [:new, :create]
+  resources :orders, only: [:new, :create, :show]
   
   resources :categories
   
