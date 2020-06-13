@@ -3,7 +3,7 @@ class OrderItemController < ApplicationController
   def add_to_cart  
     if !Product.available?(params[:id], params[:post][:qty])
       flash[:error] = "Not enough in stock"
-      return redirect_to product_path(params[:id])
+      return redirect_to root_path
     end 
 
     if session[:order_items] 
