@@ -61,15 +61,61 @@ describe ProductsController do
       must_respond_with :not_found
     end
 
-    # describe "new" do
-    #   it "can get the new_product_path" do
-    #     get new_product_path
+    describe "new" do
+      before do
+        merchant = perform_login()
+      end
+
+      it "can get the new_product_path" do
+        get new_product_path
   
-    #     must_respond_with :success
-    #   end
+        must_respond_with :success
+      end
+    end
+
+    describe "create" do
+
+      before do
+        @merchant = perform_login()
+      end
   
-      
-    # end
+     let(:product_hash) { 
+      {
+        product: {
+          name: "Item",
+          price: 2.99,
+          img_url: 'https://live.staticflickr.com/65535/49992513867_b7f9f8ffb0_m.jpg',
+          description: 'Here is a description',
+          qty: 4
+        }
+      }
+    }
+  
+      it "can create a product" do
+        expect {
+          post products_path, params: product_hash
+        }.must_differ 'Product.count', 1
+    
+        must_respond_with :redirect
+        must_redirect_to product_path(Product.last.id)
+        expect(Product.last.name).must_equal product_hash[:product][:name]
+        expect(Product.last.price).must_equal product_hash[:product][:price]
+        expect(Product.last.description).must_equal product_hash[:product][:description]
+        expect(Product.last.img_url).must_equal product_hash[:product][:img_url]
+        expect(Product.last.qty).must_equal product_hash[:product][:qty]
+        expect(Product.last.merchant_id).must_equal @merchant.id
+      end
+  
+      # it "will not create a book with invalid params" do
+      #   book_hash[:book][:title] = nil
+  
+      #   expect {
+      #     post books_path, params: book_hash
+      #   }.must_differ "Book.count", 0
+  
+      #   must_respond_with :bad_request
+      # end
+    end
 
   end
 end
