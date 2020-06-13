@@ -16,6 +16,61 @@ describe MerchantsController do
 
       must_respond_with :success
     end
-  end
 
+    describe "login" do
+      it "logs in an existing user and redirects to the root route" do
+
+        start_count = Merchant.count
+        merchant = merchants(:merchant1)
+        perform_login(merchant)
+
+        # OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(merchant))
+  
+        # get auth_callback_path(:github)
+  
+        must_redirect_to root_path
+  
+        # Since we can read the session, check that the user ID was set as expected
+        session[:user_id].must_equal merchant.id
+  
+        # Should *not* have created a new user
+        expect(Merchant.count).must_equal start_count
+      end
+
+      it "can log in an existing merchant" do
+        user = perform_login(merchants(:merchant1))
+  
+        must_respond_with :redirect
+      end
+  
+      it "can log in a new merchant" do
+        new_merchant = Merchant.new(uid: 11111, username: "someone", email: "hi@yahoo.com", provider: "github")
+  
+        expect {
+          perform_login(new_merchant)
+        }.must_change "Merchant.count", 1
+  
+        must_respond_with :redirect
+      end
+    end
+
+    describe "logout" do
+      it "can logout an existing merchant" do
+        # Arrange
+        perform_login
+  
+        expect(session[:user_id]).wont_be_nil
+  
+        post logout_path, params: {}
+  
+        expect(session[:user_id]).must_be_nil
+        must_redirect_to root_path
+      end
+  
+      it "guest users on that route" do
+
+      #TODO - this was in ada books? I think we need to to make sure guests dont have a logout option.... really not sure.
+      end
+    end
+  end
 end
