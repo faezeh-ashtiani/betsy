@@ -9,7 +9,7 @@ class MerchantsController < ApplicationController
     else 
       merchant = Merchant.create_merchant_from_github(auth_hash)
       if merchant.save 
-        #flash
+        flash[:status] = "Merchant account created"
       else
         flash[:error] = "Could not create new user account"
         return redirect_to root_path
@@ -18,6 +18,13 @@ class MerchantsController < ApplicationController
     end 
     session[:user_id] = merchant.id
     redirect_to root_path
+  end
+
+  def logout
+    session[:user_id] = nil
+    flash[:success] = "Successfully logged out"
+    redirect_to root_path
+    return
   end
 
   def merchant_products

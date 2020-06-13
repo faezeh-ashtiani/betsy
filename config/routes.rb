@@ -5,8 +5,9 @@ Rails.application.routes.draw do
 
   root to: 'products#index'
   get "/auth/github", as: "github_login"
-  get "/auth/:provider/callback", to: "merchants#create"
-
+  get "/auth/:provider/callback", to: "merchants#create", as: 'callback'
+  post "/logout", to: "merchants#logout", as: "logout"
+  
   resources :merchants
   resources :products do
     resources :reviews, only: [:create]

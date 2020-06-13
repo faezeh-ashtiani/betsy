@@ -39,10 +39,26 @@ class ProductsController < ApplicationController
   end 
 
   def edit 
+    if @product.nil?
+      head :not_found
+      return
+    end
 
   end 
 
   def update
+    if @product.nil?
+      head :not_found
+      return
+    elsif @product.update(new_product_params)
+      flash[:success] = "Product updated successfully"
+      redirect_to product_path 
+      return
+    else # save failed :(
+      flash.now[:error] = "Something happened. Product not updated."
+      render :edit, status: :bad_request # show the form view again
+      return
+    end
 
   end 
 

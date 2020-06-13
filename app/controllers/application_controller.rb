@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
 
-  
-
   def current_merchant
     merchant = Merchant.find(session[:user_id])
     return merchant
