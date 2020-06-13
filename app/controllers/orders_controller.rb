@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     if @order.save
       flash[:status] = "Order Placed!"
+      session[:order_items] = nil
       redirect_to products_path
     else
       render :new 
