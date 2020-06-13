@@ -31,4 +31,7 @@ describe Category do
       expect(category.errors.messages).must_include :name
     end
   end
+
+  # see if .products gives a collection
+  # see if each of those is a Product
 end
