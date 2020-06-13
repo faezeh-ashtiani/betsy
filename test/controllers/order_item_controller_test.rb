@@ -30,10 +30,7 @@ describe OrderItemController do
 
 
   describe "remove from cart" do 
-
     it "will remove product from cart" do 
-
-
       product = products(:product1)
 
       par = {
@@ -50,10 +47,6 @@ describe OrderItemController do
       }
       post remove_from_cart_path, params: param
       get cart_path
-
-
-
-
       # product = products(:product1)
       # product2 = products(:product2)
 
