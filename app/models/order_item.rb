@@ -1,10 +1,7 @@
 class OrderItem < ApplicationRecord
   belongs_to :product
-  belongs_to :order
 
-
-  
-  def self.unique_items(order_items) 
+  def self.display_items(order_items) 
     unique_items = {}
     order_items.each do |item|
       product = Product.find_by(id: item["product_id"])
