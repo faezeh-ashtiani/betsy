@@ -1,3 +1,6 @@
+
+
+
 <div>
   <h3><%= @product.name %></h3>
   <%= image_tag @product.img_url, alt: @product.description %>
@@ -19,6 +22,8 @@
 </div>
 
 
+
+<p> Left in Stock: <%=@product.qty%> </p> 
  <div class="form">
      <%= form_with scope: :post, url: add_to_cart_path do |f| %>
          <%= f.label "Quantity:" %>
