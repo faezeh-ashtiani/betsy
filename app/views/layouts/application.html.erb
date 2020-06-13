@@ -53,9 +53,14 @@ $(document).ready(function(){
 
   </header>
 <div>
-  <% if flash[:error] %>
-    <%= flash[:error]%>
+  <% if flash %>
+    <% flash.each do |key, val| %>
+      <%= val %>
+    <%end %>
   <%end %>
+
+
+  
 </div>
 
   <body>
