@@ -5,6 +5,8 @@ class Category < ApplicationRecord
 
   protected 
 
+  # this is not used anywhere 
+  # and even if it is used what is it supposed to do?
   def self.category_options
     [["Quarantine", "Quarantine"], 
       ["Protest", "protest"], 

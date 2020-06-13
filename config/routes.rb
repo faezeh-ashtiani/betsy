@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  # what does this route do?
   get 'products/index'
 
   root to: 'products#index'
@@ -11,7 +12,9 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create]
   end
   resources :orders, only: [:new, :create]
+  
   resources :categories
+  
 
   get '/categories/:category_id/products', to: 'products#category_products', as: 'category_products'
   get '/merchant/:merchant_id/products', to: 'merchants#merchant_products', as: 'merchant_products'
