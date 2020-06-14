@@ -5,6 +5,7 @@ product1:
   description: Watch out for germs
   qty: 10
   categories: category1, category3
+  merchant: merchant1
   
 product2:
   name: poster
@@ -13,6 +14,7 @@ product2:
   description: Show where you stand
   qty: 3
   categories: category1, category4, category6, category14
+  merchant: merchant1
   
 product3:
   name: marker
@@ -21,5 +23,6 @@ product3:
   description: Make a sign
   qty: 50
   categories: 
+  merchant: merchant1
   
   

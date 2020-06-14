@@ -19,8 +19,6 @@ ActiveRecord::Schema.define(version: 2020_06_13_175053) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "product_id"
-    t.index ["product_id"], name: "index_categories_on_product_id"
   end
 
   create_table "categories_products", force: :cascade do |t|
@@ -40,10 +38,10 @@ ActiveRecord::Schema.define(version: 2020_06_13_175053) do
   end
 
   create_table "order_items", force: :cascade do |t|
+    t.integer "qty"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "product_id"
-    t.integer "qty"
     t.bigint "order_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
@@ -54,10 +52,7 @@ ActiveRecord::Schema.define(version: 2020_06_13_175053) do
     t.string "credit_card"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "qty"
-    t.bigint "product_id"
     t.string "status"
-    t.index ["product_id"], name: "index_orders_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|

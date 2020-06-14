@@ -9,7 +9,7 @@ class MerchantsController < ApplicationController
     else 
       merchant = Merchant.create_merchant_from_github(auth_hash)
       if merchant.save 
-        #flash
+        flash[:status] = "Merchant account created"
       else
         flash[:error] = "Could not create new user account"
         return redirect_to root_path

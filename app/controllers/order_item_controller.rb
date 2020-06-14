@@ -3,15 +3,15 @@ class OrderItemController < ApplicationController
   def add_to_cart  
     if !Product.available?(params[:id], params[:post][:qty])
       flash[:error] = "Not enough in stock"
-      return redirect_to product_path(params[:id])
+      return redirect_to root_path
     end 
-    
+
     if session[:order_items] 
-      session[:order_items] << OrderItem.create(qty: params[:post][:qty], product_id: params[:id])
+      session[:order_items] << OrderItem.create!(qty: params[:post][:qty], product_id: params[:id])
       flash[:status] = "Added to Cart!"
     else
       session[:order_items] = []
-      session[:order_items] << OrderItem.create(qty: params[:post][:qty], product_id: params[:id])
+      session[:order_items] << OrderItem.create!(qty: params[:post][:qty], product_id: params[:id])
       flash[:status] = "Added to Cart!"
     end 
     redirect_to product_path(params[:id])
@@ -24,10 +24,12 @@ class OrderItemController < ApplicationController
 
   def cart 
     if session[:order_items].nil? 
+      flash[:error] = "You have nothing in your cart!"
       redirect_to root_path
     else
-      @cart = OrderItem.unique_items(session[:order_items])
+      @cart = OrderItem.display_items(session[:order_items])
       return @cart
     end 
   end 
+
 end
