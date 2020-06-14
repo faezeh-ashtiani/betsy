@@ -33,18 +33,18 @@ class ProductsController < ApplicationController
       
       redirect_to product_path(@product.id)
     else
-      render :new 
+      render :edit, status: :bad_request
       return
     end 
   end 
 
-  def edit 
-    if @product.nil?
-      head :not_found
-      return
-    end
+  # def edit    #TODO is this even needed?
+  #   if @product.nil?
+  #     head :not_found
+  #     return
+  #   end
 
-  end 
+  # end 
 
   def update
     if @product.nil?
