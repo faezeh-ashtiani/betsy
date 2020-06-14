@@ -130,17 +130,10 @@ describe Product do
     end
 
     it "cannot creat a new order_item with a non integer qty" do
-      product4.save
-      product5 = Product.new(
-        name: "Weird thing",
-        price: 3.99,
-        img_url: "https://live.staticflickr.com/65535/49991751098_c017304fc3y_m.jpg",
-        description: "Make a sign",
-        qty: 50.50,
-        merchant: merchants(:merchant1)
-      )
-      expect(product5.valid?).must_equal false
-      expect(product5.errors.messages).must_include :qty
+      product4.qty = 50.50
+      
+      expect(product4.valid?).must_equal false
+      expect(product4.errors.messages).must_include :qty
     end
 
   end

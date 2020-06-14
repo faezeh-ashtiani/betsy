@@ -31,8 +31,6 @@ describe Order do
     }
 
     it "is valid for a order with all required fields" do
-      order4.valid?
-      p order4.errors
       expect(order4.valid?).must_equal true
     end 
 
