@@ -2,12 +2,12 @@ require "test_helper"
 
 describe OrderItem do
   describe "relationships" do
-    it "had one product" do
+    it "has one product" do
       expect(order_items(:order_item1)).must_respond_to :product
       expect(order_items(:order_item1).product).must_be_instance_of Product
     end
 
-    it "had one order" do
+    it "has one order" do
       expect(order_items(:order_item1)).must_respond_to :order
       expect(order_items(:order_item1).order).must_be_instance_of Order
     end
