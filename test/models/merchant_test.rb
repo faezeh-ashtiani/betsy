@@ -5,6 +5,7 @@ describe Merchant do
   describe "merchant product relations" do
     
     it "can have many products" do
+      expect(merchants(:merchant1)).must_respond_to :products
       expect(merchants(:merchant1).products.length).must_equal 3
   
       merchants(:merchant1).products.each do |product|
@@ -97,5 +98,13 @@ describe Merchant do
       expect(merchant4.valid?).must_equal false
       expect(merchant4.errors.messages).must_include :uid
     end
+
+    it "is invalid without a provider" do
+      merchant3.provider = nil
+    
+      expect(merchant3.valid?).must_equal false
+      expect(merchant3.errors.messages).must_include :provider
+    end
+
   end
 end

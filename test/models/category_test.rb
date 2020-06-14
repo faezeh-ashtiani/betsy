@@ -15,6 +15,8 @@ describe Category do
       end
       
       category.save
+      
+      expect(category).must_respond_to :products
       expect(category.products.count).must_equal 3
       category.products.each do |product|
         expect(product).must_be_instance_of Product
