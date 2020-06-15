@@ -67,9 +67,18 @@ describe MerchantsController do
         must_redirect_to root_path
       end
   
-      it "guest users on that route" do
+      
+    end
 
-      #TODO - this was in ada books? I think we need to to make sure guests dont have a logout option.... really not sure.
+    describe "Guest users" do
+      before do
+        @merchant = Merchant.first
+      end
+  
+      it "guest can access product by merchant" do
+        get merchant_products_path(@merchant.id)
+        must_respond_with :success
+       
       end
     end
   end

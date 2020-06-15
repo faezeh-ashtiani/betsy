@@ -119,6 +119,10 @@ describe ProductsController do
 
     describe "update" do
 
+      before do
+        @merchant = perform_login()
+      end
+
       let(:product_hash) { 
         {
           product: {
@@ -172,15 +176,34 @@ describe ProductsController do
     end
 
     describe "Guest users" do
+      before do
+        @product = Product.first
+      end
+      
       it "guest can access the index" do
         get products_path
         must_respond_with :success
       end
+   
+      it "guest can access product show" do
+        get "/products/#{@product.id}"
+        must_respond_with :success
+      end
+
   
       it "guest cannot access new" do
         get new_product_path
+       
+        flash[:message].must_equal "You must be logged in to do this"
         must_redirect_to root_path
-        flash[:message].must_equal "You must be logged in to see that page!"
+      end
+
+      it "guest cannot access update" do
+        patch product_path(@product.id)
+        # patch "/product/#{@product.id}"
+       
+        flash[:message].must_equal "You must be logged in to do this"
+        must_redirect_to root_path
       end
     end
   end

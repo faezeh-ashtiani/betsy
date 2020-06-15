@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-  before_action :require_login, only: [:new, :create, :destroy, :edit]
+  before_action :require_login, only: [:new, :create, :destroy, :update, :edit]
   before_action :find_product, only: [:show, :edit, :update, :destroy]
 
   def index
