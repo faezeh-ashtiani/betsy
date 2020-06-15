@@ -14,7 +14,9 @@ class OrdersController < ApplicationController
     if @order.save
       flash[:status] = "Order Placed!"
       @order.order_items = session[:order_items].map{|item| OrderItem.find_by(id: item["id"])}
-    
+      @order.order_items.each do |item|
+        Product.update_quantity(item.product_id, item.qty)
+      end 
       session[:order_items] = nil
       redirect_to order_path(@order.id)
     else

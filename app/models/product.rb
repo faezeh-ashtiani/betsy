@@ -25,4 +25,10 @@ class Product < ApplicationRecord
     return product.qty >= order_item_qty.to_i
   end 
 
+  def self.update_quantity(product_id, qty)
+    product = Product.find_by(id: product_id)
+    product.qty -= qty
+    product.reload
+  end
+
 end
