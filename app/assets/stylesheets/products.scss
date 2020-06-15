@@ -20,3 +20,19 @@
   text-align: center;
   padding: 5%;
 }
+.form-check {
+  display: grid;
+  grid-template: 1fr 1fr 1fr 1fr /1fr 1fr 1fr 1fr;
+}
+.form {
+  margin-left: 20%;
+}
+
+input {
+  width: 60%;
+}
+
+.form-check > input {
+  width:20%;
+  height: 10%;
+}
