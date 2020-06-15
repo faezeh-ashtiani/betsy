@@ -3,16 +3,79 @@ require "test_helper"
 describe Order do
   describe "order to order item relation" do
 
-    let(:order_item2) { order_items(:order_item2) }
-    let(:order_item3) { order_items(:order_item3) }
-  
-    it "order item belong to order" do
-      expect(order_item2.order.name).must_equal "tom"
+    it "can have many order_items" do
+      expect(orders(:order1)).must_respond_to :order_items
+      expect(orders(:order1).order_items.length).must_equal 3
+      orders(:order1).order_items.each do |order_item|
+        expect(order_item).must_be_instance_of OrderItem
+      end
     end
 
-    it "order can have many order items" do
-      expect(order_item2.order.name).must_equal "tom"
-      expect(order_item3.order.name).must_equal "tom"
+    it "has many products thrugh oreder_items" do
+      expect(orders(:order1)).must_respond_to :products
+      expect(orders(:order1).products.length).must_equal 3
+      orders(:order1).products.each do |product|
+        expect(product).must_be_instance_of Product
+      end
+    end
+
+  end
+
+  describe "validations" do
+    let (:order4) {
+      Order.new(
+        name: "Fa the guest",
+        credit_card: "1234567890123456",
+        status: "paid"
+      )
+    }
+
+    it "is valid for a order with all required fields" do
+      expect(order4.valid?).must_equal true
+    end 
+
+    it "has the required fields" do
+      order4.save
+      new_order = Order.last
+    
+      [:name, :credit_card, :status].each do |field|
+        expect(new_order).must_respond_to field
+      end
+    end
+
+    it "is invalid without a name" do
+      order4.name = nil
+    
+      expect(order4.valid?).must_equal false
+      expect(order4.errors.messages).must_include :name
+    end
+
+    it "is invalid without a credit card" do
+      order4.credit_card = nil
+    
+      expect(order4.valid?).must_equal false
+      expect(order4.errors.messages).must_include :credit_card
+    end
+
+    it "cannot creat a new order with a creditcard number that is not 16 digits" do
+      order4.credit_card = "1111"
+    
+      expect(order4.valid?).must_equal false
+      expect(order4.errors.messages).must_include :credit_card
+    end
+
+    it "is invalid without a status" do
+      order4.status = nil
+    
+      expect(order4.valid?).must_equal false
+      expect(order4.errors.messages).must_include :status
+    end
+
+    it "cannot creat a new order with a status other than paid or complete" do
+      order4.status = "something else"
+    
+      expect(order4.valid?).must_equal false
+      expect(order4.errors.messages).must_include :status
     end
 
   end

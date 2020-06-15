@@ -23,17 +23,11 @@ describe MerchantsController do
         start_count = Merchant.count
         merchant = merchants(:merchant1)
         perform_login(merchant)
-
-        # OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(merchant))
-  
-        # get auth_callback_path(:github)
   
         must_redirect_to root_path
   
-        # Since we can read the session, check that the user ID was set as expected
         session[:user_id].must_equal merchant.id
   
-        # Should *not* have created a new user
         expect(Merchant.count).must_equal start_count
       end
 

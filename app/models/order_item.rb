@@ -1,7 +1,9 @@
 class OrderItem < ApplicationRecord
   belongs_to :product
-
-  def self.display_items(order_items) 
+  belongs_to :order
+  validates :qty, presence: true, numericality: { only_integer: true }
+  
+  def self.display_items(order_items)  
     unique_items = {}
     order_items.each do |item|
       product = Product.find_by(id: item["product_id"])
