@@ -17,7 +17,7 @@ describe MerchantsController do
       must_respond_with :success
     end
 
-    describe " mock login" do
+    describe "mock login" do
       it "logs in an existing merchant and redirects to the root route" do
 
         start_count = Merchant.count

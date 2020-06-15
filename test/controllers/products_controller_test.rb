@@ -170,5 +170,18 @@ describe ProductsController do
         expect(product.name).wont_be_nil
       end
     end
+
+    describe "Guest users" do
+      it "guest can access the index" do
+        get products_path
+        must_respond_with :success
+      end
+  
+      it "guest cannot access new" do
+        get new_product_path
+        must_redirect_to root_path
+        flash[:message].must_equal "You must be logged in to see that page!"
+      end
+    end
   end
 end
