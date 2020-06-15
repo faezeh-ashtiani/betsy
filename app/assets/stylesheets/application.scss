@@ -19,11 +19,12 @@
 *{
   font-family: 'Roboto Condensed', sans-serif;
 }
+
 img {
   margin: 0;
-    max-width: 250px;
-    max-height: 200px;
-    padding: 0;
+  max-width: 250px;
+  max-height: 200px;
+  padding: 0;
   
 }
 header {
@@ -45,10 +46,12 @@ nav {
   list-style: none;
   height: 20%;
 }
+
 nav > li > a,  ul > li > a {
   color: white;
   text-decoration: underline;
 }
+
 ul > li > a {
   color: black;
 }

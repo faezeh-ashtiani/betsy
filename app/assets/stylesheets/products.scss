@@ -6,15 +6,12 @@
   width: 90%;
   padding: 5% 0 0 10%;
   display: grid;
-  grid-template: 1fr 1fr  1fr /  1fr 1fr 1fr;
+  grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
   grid-gap: 5%;
-  margin: 0;
+
 }
 
-.all-products {
-  display: grid; 
-  grid-template-rows: 15% 85%;
-}
+
 
 .products-header {
   text-align: center;
@@ -22,7 +19,7 @@
 }
 .form-check {
   display: grid;
-  grid-template: 1fr 1fr 1fr 1fr /1fr 1fr 1fr 1fr;
+  grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr;
 }
 .form {
   margin-left: 20%;
