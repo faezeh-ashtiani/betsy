@@ -92,7 +92,6 @@ describe Order do
 
       total = Order.order_total(order_hash)
       expect(total).must_equal 14.278
-
     end   
 
 
