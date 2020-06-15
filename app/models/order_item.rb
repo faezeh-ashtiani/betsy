@@ -1,6 +1,5 @@
 class OrderItem < ApplicationRecord
   belongs_to :product
-  belongs_to :order
   validates :qty, presence: true, numericality: { only_integer: true }
   
   def self.display_items(order_items)  
