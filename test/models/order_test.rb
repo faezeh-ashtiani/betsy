@@ -79,4 +79,21 @@ describe Order do
     end
 
   end
+
+  describe "model methods" do 
+
+    it "will give the correct total of an order" do 
+      prod1 = products(:product1) #2.99
+      prod2 = products(:product2) #9.99
+      order_hash = {}
+
+      order_hash[prod1] = 1
+      order_hash[prod2] = 1
+
+      total = Order.order_total(order_hash)
+      expect(total).must_equal 14.278
+    end   
+
+
+  end 
 end
