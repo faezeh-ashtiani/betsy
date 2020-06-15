@@ -1,7 +1,16 @@
 require "test_helper"
 
 describe CategoriesController do
-  # it "does a thing" do
-  #   value(1+1).must_equal 2
-  # end
+  
+  describe "Guest users" do
+    before do
+      @category = Category.first
+    end
+
+    it "guest can access product by category" do
+      get category_products_path(@category.id)
+      must_respond_with :success
+     
+    end
+  end
 end

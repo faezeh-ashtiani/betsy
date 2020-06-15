@@ -12,7 +12,7 @@ class MerchantsController < ApplicationController
         flash[:status] = "Merchant account created"
       else
         flash[:error] = "Could not create new user account"
-        return redirect_to root_path
+        return redirect_to github_login_path
         
       end
     end 

@@ -36,4 +36,25 @@ describe ReviewsController do
 
   end
 
+  describe "Guest users" do
+
+    before do
+      @product = Product.last
+    end
+
+    let(:review_data) {
+      {
+        review: {
+          rating: 3,
+          description: "A good product but too expensive."
+        }
+      }
+    }
+    
+    it "guest can leave a review" do   #TODO this test seems funky
+      post product_reviews_path(@product.id),params: review_data
+      must_redirect_to product_path(@product.id)
+    end
+  end
+
 end
