@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
 
-
   def show 
     @order = Order.find_by(id: params[:id])
   end 
@@ -11,6 +10,7 @@ class OrdersController < ApplicationController
 
   def create 
     @order = Order.new(order_params) 
+    @order.status = "paid"
     if @order.save
       flash[:status] = "Order Placed!"
       @order.order_items = session[:order_items].map{|item| OrderItem.find_by(id: item["id"])}
