@@ -4,7 +4,7 @@ class Order < ApplicationRecord
 
   validates :name, presence: true
   validates :credit_card, presence: true, length: { is: 16 }
-  validates :status, presence: true, inclusion: { in: ["paid", "complete"] }
+  #validates :status, presence: true, inclusion: { in: ["paid", "complete"] }
 
 
 
