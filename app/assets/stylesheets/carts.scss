@@ -26,9 +26,9 @@
   border-radius: 8px;
   background-color: yellow;
 }
-.card{
+.card-body{
   width: 25%;
-  height: 400px;
+  height: 30%;
 }
 
 .edit-links{
@@ -37,8 +37,9 @@
 }
 
 .cards {
-  padding: 5% 0 0 10%;
-  grid-gap: 5%;
-  margin: 0;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
 
 }

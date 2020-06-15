@@ -5,10 +5,12 @@
       <%= link_to "Check Out", new_order_path, action: 'new', controller: 'orders', class: 'btn btn-primary' %>
     </div>   
   </div>
+
+ <% @cart.each do |product, val|%>
 <div class="cards">
     <div class="card">
       <div class="card-body">
-      <% @cart.each do |product, val|%>
+     
         <p class="card-text"><%= product.name %> </p>
       </div>
       <%= image_tag product.img_url, alt: product.description %>
@@ -21,9 +23,10 @@
             <%= link_to "Edit", product_path(product.id) %>
           </div>
         </div>
-      <% end %>
+      
   </div>
 </div>
+<% end %>
 
 
 
