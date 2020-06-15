@@ -1,0 +1,7 @@
+
+
+
+<% @order.order_items.each do |item| %>
+  <% product = Product.find_by(id: item.product_id)%>
+  <%= product.name %>
+<%end %>
