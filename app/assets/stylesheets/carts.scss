@@ -1,3 +1,44 @@
 // Place all the styles related to the Carts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+.cart{
+  display: grid;
+  grid-template-rows: 15% 85%;
+  width: 80%;
+}
+
+.cart-header {
+  margin-left: 35%;
+  display: grid;
+  grid-template-columns: 80% 20%;
+  padding: 5%;
+  text-align: center;
+ 
+
+}
+
+.checkout-button {
+  position: absolute; 
+  right: 0;
+  margin-right: 10%;
+  border-radius: 8px;
+  background-color: yellow;
+}
+.card{
+  width: 25%;
+  height: 400px;
+}
+
+.edit-links{
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.cards {
+  padding: 5% 0 0 10%;
+  grid-gap: 5%;
+  margin: 0;
+
+}

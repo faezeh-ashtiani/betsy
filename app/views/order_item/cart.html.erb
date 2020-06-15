@@ -1,16 +1,34 @@
+<div class="cart"> 
+  <div class="cart-header"> 
+    <h2> Your Cart </h2> 
+    <div class='checkout-button'> 
+      <%= button_to "Checkout", action: "check_out", controller: "order", class:'checkout-button'%>
+    </div>   
+  </div>
+<div class="cards">
+    <div class="card">
+      <div class="card-body">
+      <% @cart.each do |product, val|%>
+        <p class="card-text"><%= product.name %> </p>
+      </div>
+      <%= image_tag product.img_url, alt: product.description %>
+        <div class="card-body">
+          <p class="card-text"><%= product.description %></p>
+          <p class="card-text"><%= "$#{'%.2f' % product.price}" %></p>
+          <p class="card-text"> Quantity: <%=val %></p>
+          <div class="edit-links">
+            <%= link_to 'Delete', remove_from_cart_path(product.id), method: :post %>
+            <%= link_to "Edit", product_path(product.id) %>
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div>
 
-<h2> Your Cart </h2> 
-<% @cart.each do |product, val|%>
-  
-  <h3><%= product.name %></h3>
-  <%= image_tag product.img_url, alt: product.description %>
-  <h5><%= product.description %></h4>
-  <h6><%= product.price %></h6>
-  <p> Quantity: <%= val %> </p>
-  <%= link_to 'Delete', remove_from_cart_path(product.id), method: :post %>
-  <%= link_to "Edit", product_path(product.id) %>
-<% end %>
 
-<div> 
-  <%= link_to "Check Out", new_order_path %>
+
 </div> 
+
+
+
+
