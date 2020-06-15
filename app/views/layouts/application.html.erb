@@ -13,13 +13,11 @@
   </head>
 
 <header> 
-  <h1 class='main-header'><%= link_to "Forever 2020", root_path %></h1>
+  <h1 class='main-header'>Forever 2020</h1>
   
 <nav class="dropdown">
   <li class="navbar-item"><%= link_to "Cart", cart_path, class: "nav-link" %> </li> 
-  <li class="navbar-item"><%= link_to "Login", github_login_path, class: "nav-link" %> </li> 
-  <li class="navbar-item"><%= link_to "Add New Product", new_product_path, class: "nav-link" %> </li> 
-  <li class="navbar-item dropdown-toggle main-drop" type="button" data-toggle="dropdown">Products<span class="caret"></span></li>
+  <li class="navbar-item dropdown-toggle main-drop" type="button" data-toggle="dropdown" style="text-decoration: underline;">Products<span class="caret"></span></li>
     <ul class="dropdown-menu">
       <li class="dropdown-submenu">
         <a class="test" tabindex="-1" href="#">By Category <span class="caret"></span></a>
@@ -38,6 +36,13 @@
         </ul>
       </li>
     </ul>
+      <% if session[:user_id]%>
+        <li class="navbar-item"><%= link_to "Add New Product", new_product_path, class: "nav-link" %> </li> 
+        <li class="navbar-item"><%= link_to "Logout (nw)", github_login_path, class: "nav-link" %> </li> 
+
+      <% else %>
+        <li class="navbar-item"><%= link_to "Login", github_login_path, class: "nav-link" %> </li> 
+      <%end %>
 </nav>
 
 
