@@ -1,7 +1,24 @@
 
 
-
+<h2> Thank you for shopping with Forever 2020! Your order has been placed. </h2>
 <% @order.order_items.each do |item| %>
   <% product = Product.find_by(id: item.product_id)%>
   <%= product.name %>
 <%end %>
+
+
+<div class="cards">
+    <div class="card">
+      <div class="card-body">
+      <% @order.order_items.each do |item| %>
+        <% product = Product.find_by(id: item.product_id)%>
+        <p class="card-text"><%= product.name %> </p>
+      </div>
+      <%= image_tag product.img_url, alt: product.description %>
+        <div class="card-body">
+          <p class="card-text"><%= product.description %></p>
+          <p class="card-text"><%= "$#{'%.2f' % product.price}" %></p>
+        </div>
+      <% end %>
+  </div>
+</div>

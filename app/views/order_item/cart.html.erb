@@ -2,7 +2,7 @@
   <div class="cart-header"> 
     <h2> Your Cart </h2> 
     <div class='checkout-button'> 
-      <%= button_to "Checkout", action: "check_out", controller: "order", class:'checkout-button'%>
+      <%= link_to "Check Out", new_order_path, action: 'new', controller: 'orders', class: 'btn btn-primary' %>
     </div>   
   </div>
 <div class="cards">
