@@ -8,12 +8,35 @@
 
 require 'csv'
 
+MERCHANT_FILE = Rails.root.join('db', 'merchants_seeds.csv')
+puts "Loading raw merchant data from #{MERCHANT_FILE}"
+
+merchant_failures = []
+CSV.foreach(MERCHANT_FILE, :headers => true) do |row|
+  merchant = Merchant.new
+  merchant.username = row['username']
+  merchant.email = row['email']
+  merchant.uid = row['uid']
+  merchant.provider = row['provider']
+  
+  successful = merchant.save
+  if !successful
+    merchant_failures << merchant
+    puts "Failed to save merchant: #{merchant.inspect}"
+  else
+    puts "Created merchant: #{merchant.inspect}"
+  end
+end
+
+puts "Added #{Merchant.count} merchant records"
+puts "#{merchant_failures.length} merchant failed to save"
+
 PRODUCT_FILE = Rails.root.join('db', 'products_seeds.csv')
 puts "Loading raw product data from #{PRODUCT_FILE}"
 
 product_failures = []
 CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
-  if !Product.create!(id: row['id'] , name:row['name'] , price:row['price'] , img_url: row['img_url'], qty:row['qty'] , description: row['description'], merchant_id: Merchant.create().id)
+  if !Product.create!(id: row['id'] , name:row['name'] , price:row['price'].to_f , img_url: row['img_url'], description: row['description'], qty: row['qty'].to_i , merchant: Merchant.all.sample)
     product_failures << product
     puts "Failed to save product: "
   else
@@ -48,29 +71,6 @@ Product.all.each do |product|
   product.categories.concat(Category.all.sample(3))
   product.save
 end
-
-MERCHANT_FILE = Rails.root.join('db', 'merchants_seeds.csv')
-puts "Loading raw merchant data from #{MERCHANT_FILE}"
-
-merchant_failures = []
-CSV.foreach(MERCHANT_FILE, :headers => true) do |row|
-  merchant = Merchant.new
-  merchant.username = row['username']
-  merchant.email = row['email']
-  merchant.uid = row['uid']
-  merchant.provider = row['provider']
-  
-  successful = merchant.save
-  if !successful
-    merchant_failures << merchant
-    puts "Failed to save merchant: #{merchant.inspect}"
-  else
-    puts "Created merchant: #{merchant.inspect}"
-  end
-end
-
-puts "Added #{Merchant.count} merchant records"
-puts "#{merchant_failures.length} merchant failed to save"
 
 # Since we set the primary key (the ID) manually on each of the
 # tables, we've got to tell postgres to reload the latest ID
