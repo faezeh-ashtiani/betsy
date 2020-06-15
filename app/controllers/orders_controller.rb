@@ -10,8 +10,7 @@ class OrdersController < ApplicationController
   end 
 
   def create 
-    @order = Order.new(order_params)
-    @order.qty = session[:order_items].length 
+    @order = Order.new(order_params) 
     if @order.save
       flash[:status] = "Order Placed!"
       @order.order_items = session[:order_items].map{|item| OrderItem.find_by(id: item["id"])}
