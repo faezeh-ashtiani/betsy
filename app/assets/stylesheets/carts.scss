@@ -15,8 +15,6 @@
   grid-template-columns: 80% 20%;
   padding: 5%;
   text-align: center;
- 
-
 }
 
 .checkout-button {
@@ -52,10 +50,15 @@
 }
 
 .cards {
-
   display: grid;
   grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr ;
   grid-gap: 5%;
   margin-left:10%;
+
+}
+
+.product-info {
+  position: absolute;
+  bottom: 0;
 
 }
