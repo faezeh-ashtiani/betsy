@@ -5,6 +5,11 @@ class Product < ApplicationRecord
   has_many :orders, through: :order_items
   belongs_to :merchant
 
+  validates :name, presence: true, uniqueness: true
+  validates :price, presence: true, numericality: true
+  validates :img_url, presence: true
+  validates :qty, presence: true, numericality: { only_integer: true }
+
   def average_rating
     if self.reviews.length == 0
       return 0

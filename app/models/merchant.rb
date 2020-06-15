@@ -1,5 +1,9 @@
 class Merchant < ApplicationRecord
-  has_many :products 
+  has_many :products
+  validates :username, presence: true, uniqueness: { scope: :provider }
+  validates :email, presence: true, uniqueness: { scope: :provider }
+  validates :uid, presence: true, uniqueness: { scope: :provider }
+  validates :provider, presence: true
 
   def self.create_merchant_from_github(auth_hash)
     merchant = Merchant.new
@@ -8,12 +12,12 @@ class Merchant < ApplicationRecord
     merchant.username = auth_hash["info"]["name"]
     merchant.email = auth_hash["info"]["email"]
 
-    return merchant 
-  end 
+    return merchant
+  end
 
+  # do we need this method?
   def merchant_products
     @merchant = Merchant.find_by(id: params[:id])
-    @merchant_products = @merchant.products 
+    @merchant_products = @merchant.products
   end
-  
 end
