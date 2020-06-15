@@ -2,29 +2,31 @@
   <div class="cart-header"> 
     <h2> Your Cart </h2> 
     <div class='checkout-button'> 
-      <%= button_to "Checkout", action: "check_out", controller: "order", class:'checkout-button'%>
+      <%= link_to "Check Out", new_order_path, action: 'new', controller: 'orders', class: 'btn btn-primary' %>
     </div>   
   </div>
+
+ 
 <div class="cards">
+<% @cart.each do |product, val|%>
     <div class="card">
       <div class="card-body">
-      <% @cart.each do |product, val|%>
-        <p class="card-text"><%= product.name %> </p>
+     
+        <p class="card-title"><%= product.name %> </p>
       </div>
-      <%= image_tag product.img_url, alt: product.description %>
+      <%= image_tag product.img_url, alt: product.description, class: 'cart-image' %>
         <div class="card-body">
-          <p class="card-text"><%= product.description %></p>
-          <p class="card-text"><%= "$#{'%.2f' % product.price}" %></p>
-          <p class="card-text"> Quantity: <%=val %></p>
+          <p class="card-text"><%= "$#{'%.2f' % (product.price.to_f * val.to_i)}"%> (<%=val %> x <%= "$#{'%.2f' % product.price}" %>) </p>
           <div class="edit-links">
-            <%= link_to 'Delete', remove_from_cart_path(product.id), method: :post %>
+            <%= link_to 'Remove', remove_from_cart_path(product.id), method: :post %>
             <%= link_to "Edit", product_path(product.id) %>
           </div>
         </div>
-      <% end %>
+      
   </div>
-</div>
+  <% end %>
 
+</div>
 
 
 </div> 

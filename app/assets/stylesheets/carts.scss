@@ -6,17 +6,15 @@
 .cart{
   display: grid;
   grid-template-rows: 15% 85%;
-  width: 80%;
+  width: 90%;
 }
 
 .cart-header {
-  margin-left: 35%;
+  margin-left: 25%;
   display: grid;
   grid-template-columns: 80% 20%;
   padding: 5%;
   text-align: center;
- 
-
 }
 
 .checkout-button {
@@ -26,19 +24,41 @@
   border-radius: 8px;
   background-color: yellow;
 }
-.card{
-  width: 25%;
-  height: 400px;
+.card-body{
+  width: 50%;
+  height: 40%;
+}
+.card-title {
+  margin-bottom: 0;
 }
 
+.cart-image {
+  padding-top:0;
+}
+
+.card-body{
+  padding-bottom: 0;
+  height: 100px;
+}
+
+
 .edit-links{
+  width: 100%;
   display: grid;
   grid-template-columns: 50% 50%;
+
 }
 
 .cards {
-  padding: 5% 0 0 10%;
+  display: grid;
+  grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr ;
   grid-gap: 5%;
-  margin: 0;
+  margin-left:10%;
+
+}
+
+.product-info {
+  position: absolute;
+  bottom: 0;
 
 }

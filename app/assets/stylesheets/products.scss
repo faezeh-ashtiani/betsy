@@ -10,3 +10,13 @@
   grid-gap: 5%;
   margin: 0;
 }
+
+.all-products {
+  display: grid; 
+  grid-template-rows: 15% 85%;
+}
+
+.products-header {
+  text-align: center;
+  padding: 5%;
+}
