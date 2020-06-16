@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-  before_action :require_login, only: [:new, :create, :destroy, :edit]
+  before_action :require_login, only: [:new, :create, :destroy, :update, :edit]
   before_action :find_product, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -26,7 +26,11 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(new_product_params)
+    if session[:user_id] == nil
+      redirect_to root_path 
+    end
     @product.merchant_id = session[:user_id]
+
    
     if @product.save
       flash[:status] = "Product Created!"

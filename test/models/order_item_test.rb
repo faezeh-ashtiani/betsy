@@ -6,11 +6,6 @@ describe OrderItem do
       expect(order_items(:order_item1)).must_respond_to :product
       expect(order_items(:order_item1).product).must_be_instance_of Product
     end
-
-    it "has one order" do
-      expect(order_items(:order_item1)).must_respond_to :order
-      expect(order_items(:order_item1).order).must_be_instance_of Order
-    end
   end
 
   describe "validations" do
@@ -83,6 +78,7 @@ describe OrderItem do
       updated_cart = OrderItem.remove_from_cart(cart, product1.id)
       updated_cart.length.must_equal 1
     end 
-
   end 
+
+  
 end

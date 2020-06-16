@@ -17,8 +17,8 @@ describe MerchantsController do
       must_respond_with :success
     end
 
-    describe "login" do
-      it "logs in an existing user and redirects to the root route" do
+    describe "mock login" do
+      it "logs in an existing merchant and redirects to the root route" do
 
         start_count = Merchant.count
         merchant = merchants(:merchant1)
@@ -37,14 +37,20 @@ describe MerchantsController do
         must_respond_with :redirect
       end
   
-      it "can log in a new merchant" do
-        new_merchant = Merchant.new(uid: 11111, username: "someone", email: "hi@yahoo.com", provider: "github")
-  
+      it "can log in/create a new merchant and redirects" do
+        new_merchant = Merchant.new(uid: 11111, username: "someone", email: "someone@yahoo.com", provider: "github")
+        
         expect {
           perform_login(new_merchant)
         }.must_change "Merchant.count", 1
-  
+       
         must_respond_with :redirect
+      end
+
+      it "redirects if given invalid merchant data" do
+        new_merchant = Merchant.new(uid: nil, username: nil, email: "hi@yahoo.com", provider: "github")
+        perform_login(new_merchant)
+        must_redirect_to github_login_path
       end
     end
 
@@ -61,9 +67,18 @@ describe MerchantsController do
         must_redirect_to root_path
       end
   
-      it "guest users on that route" do
+      
+    end
 
-      #TODO - this was in ada books? I think we need to to make sure guests dont have a logout option.... really not sure.
+    describe "Guest users" do
+      before do
+        @merchant = Merchant.first
+      end
+  
+      it "guest can access product by merchant" do
+        get merchant_products_path(@merchant.id)
+        must_respond_with :success
+       
       end
     end
   end
