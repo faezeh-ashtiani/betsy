@@ -19,6 +19,7 @@
 *{
   font-family: 'Open Sans Condensed', sans-serif;
 }
+
 img {
   margin: 0;
     max-width: 250px;
@@ -35,6 +36,11 @@ header {
 
 .main-header {
   margin-bottom: 3%;
+}
+
+.main-header a {
+  color: white;
+  text-decoration: none;
 }
 
 nav {
