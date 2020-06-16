@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # oauth routes 
   get "/auth/github", as: "github_login"
   get "/auth/:provider/callback", to: "merchants#create", as: 'callback'
+  get "/auth/failure", to: "merchants#errors", as: 'failure'
   delete "/logout", to: "merchants#logout", as: "logout"
   
   resources :merchants

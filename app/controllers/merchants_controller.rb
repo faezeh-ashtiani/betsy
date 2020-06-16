@@ -10,6 +10,10 @@ class MerchantsController < ApplicationController
     end
   end 
 
+  def errors
+    raise
+  end
+
   def create
     auth_hash = request.env["omniauth.auth"]
     merchant = Merchant.find_by(uid: auth_hash[:uid], provider: "github")
