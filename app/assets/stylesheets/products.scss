@@ -22,12 +22,13 @@
 }
 .form-check {
   display: grid;
-  grid-template: 1fr 1fr 1fr 1fr /15px 1fr 15px 1fr;
+  grid-template: 1fr 1fr 1fr 1fr /15px 125px 15px 125px 15px 125px 15px 125px;
+  align-items: center;
 
 }
 
 .form-check > input {
-  margin-top: 35%;
+  margin-top: 20%;
 }
 .form {
   margin-left: 20%;
