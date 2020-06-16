@@ -42,13 +42,13 @@ class ProductsController < ApplicationController
     end 
   end 
 
-  # def edit    #TODO is this even needed?
-  #   if @product.nil?
-  #     head :not_found
-  #     return
-  #   end
+  def edit    #TODO is this even needed?
+    if @product.nil?
+      head :not_found
+      return
+    end
 
-  # end 
+  end 
 
   def update
     if @product.nil?
