@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
       return
     else
       flash.now[:error] = "Something happened. category not added."
-      render :new
+      render :new, status: :bad_request
       return
     end
   end

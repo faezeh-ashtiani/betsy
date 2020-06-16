@@ -11,19 +11,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
   </head>
 
-  <header> 
-    <h1 class='main-header'><%= link_to "FOREVER 2020", root_path %></h1>
-    
-    <nav class="dropdown">
-      <li class="navbar-item"><%= link_to "CART", cart_path, class: "nav-link" %> </li> 
-      <li class="navbar-item dropdown-toggle main-drop" type="button" data-toggle="dropdown">PRODUCTS<span class="caret"></span></li>
-        <ul class="dropdown-menu">
-          <li class="dropdown-submenu">
-            <a class="test" tabindex="-1" href="#">CATEGORIES <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <% Category.all.each do |category| %>
-                <li><%= link_to category.name.upcase, category_products_path(category.id) %></li>
-              <% end %>
+<header> 
+  <h1 class='main-header'><%= link_to "FOREVER 2020", root_path %></h1>
+  
+
+  <nav class="dropdown">
+    <li class="navbar-item"><%= link_to "CART", cart_path, class: "nav-link" %> </li> 
+    <li class="navbar-item dropdown-toggle main-drop" type="button" data-toggle="dropdown">PRODUCTS<span class="caret"></span></li>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a class="test" tabindex="-1" href="#">CATEGORIES <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <% Category.all.each do |category| %>
+              <li><%= link_to category.name.upcase, category_products_path(category.id) %></li>
+            <% end %>
+        </ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a class="test" tabindex="-1" href="#">MERCHANTS <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <% Merchant.all.each do |merchant| %>
+              <li><%= link_to merchant.username, merchant_products_path(merchant.id) %></li>
+            <% end %>
           </ul>
           </li>
           <li class="dropdown-submenu">
