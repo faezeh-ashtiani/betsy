@@ -17,7 +17,7 @@
 
 @import "**/*";
 *{
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Open Sans Condensed', sans-serif;
 }
 img {
   margin: 0;
@@ -44,10 +44,12 @@ nav {
   width: 80%; 
   list-style: none;
   height: 20%;
+  font-size: 18px;
+
 }
 nav > li > a,  ul > li > a {
   color: white;
-  text-decoration: underline;
+  // text-decoration: underline;
 }
 ul > li > a {
   color: black;
@@ -55,4 +57,8 @@ ul > li > a {
 
 .main-drop {
   padding-top: 7px;
+}
+
+a {
+  text-decoration: none;
 }
