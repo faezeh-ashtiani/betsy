@@ -17,20 +17,17 @@ class MerchantsController < ApplicationController
       end
     end 
 
+    # store logged in user in session
     session[:user_id] = merchant.id
-
-    # if merchant.username == nil
-    #   merchant.username = merchant.id
-    # end
 
     redirect_to root_path
   end
 
   def logout
     session[:user_id] = nil
-    flash[:success] = "Successfully logged out"
+    flash[:status] = "Successfully logged out!"
+
     redirect_to root_path
-    return
   end
 
   def merchant_products
