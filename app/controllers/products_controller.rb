@@ -26,12 +26,11 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(new_product_params)
-    if session[:user_id] == nil
-      redirect_to root_path 
-    end
+    # if session[:user_id] == nil  #TODO double chekc that this is not needed
+    #   redirect_to root_path 
+    # end
     @product.merchant_id = session[:user_id]
 
-   
     if @product.save
       flash[:status] = "Product Created!"
       
