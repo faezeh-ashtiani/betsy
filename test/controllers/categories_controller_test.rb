@@ -13,4 +13,39 @@ describe CategoriesController do
      
     end
   end
+
+  describe "create" do
+
+    before do
+      @merchant = perform_login()
+    end
+
+   let(:category_hash) { 
+    {
+      category: {
+        name: "stuff",
+      }
+    }
+  }
+
+    it "can create a category" do
+      expect {
+        post categorys_path, params: category_hash
+      }.must_differ 'Category.count', 1
+  
+      must_respond_with :redirect
+      must_redirect_to root_path
+      expect(Category.last.name).must_equal category_hash[:category][:name]
+    end
+
+    it "will not create a category with invalid params" do
+      category_hash[:category][:name] = nil
+
+      expect {
+        post categorys_path, params: category_hash
+      }.must_differ "Category.count", 0
+
+      must_respond_with :bad_request
+    end
+  end
 end

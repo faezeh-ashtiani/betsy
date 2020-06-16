@@ -31,7 +31,7 @@
           <a class="test" tabindex="-1" href="#">MERCHANTS <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <% Merchant.all.each do |merchant| %>
-              <li><%= link_to merchant.username.upcase, merchant_products_path(merchant.id) %></li>
+              <li><%= link_to merchant.username, merchant_products_path(merchant.id) %></li>
             <% end %>
           </ul>
         </li>
