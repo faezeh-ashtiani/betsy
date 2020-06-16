@@ -14,58 +14,56 @@
 <header> 
   <h1 class='main-header'><%= link_to "FOREVER 2020", root_path %></h1>
   
-<nav class="dropdown">
-  <li class="navbar-item"><%= link_to "CART", cart_path, class: "nav-link" %> </li> 
-  <li class="navbar-item dropdown-toggle main-drop" type="button" data-toggle="dropdown">PRODUCTS<span class="caret"></span></li>
-    <ul class="dropdown-menu">
-      <li class="dropdown-submenu">
-        <a class="test" tabindex="-1" href="#">CATEGORIES <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <% Category.all.each do |category| %>
-            <li><%= link_to category.name.upcase, category_products_path(category.id) %></li>
-          <% end %>
-      </ul>
-      </li>
-      <li class="dropdown-submenu">
-        <a class="test" tabindex="-1" href="#">MERCHANTS <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <% Merchant.all.each do |merchant| %>
-             <li><%= link_to merchant.username, merchant_products_path(merchant.id) %></li>  
-          <% end %>
+
+  <nav class="dropdown">
+    <li class="navbar-item"><%= link_to "CART", cart_path, class: "nav-link" %> </li> 
+    <li class="navbar-item dropdown-toggle main-drop" type="button" data-toggle="dropdown">PRODUCTS<span class="caret"></span></li>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a class="test" tabindex="-1" href="#">CATEGORIES <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <% Category.all.each do |category| %>
+              <li><%= link_to category.name.upcase, category_products_path(category.id) %></li>
+            <% end %>
         </ul>
-      </li>
-    </ul>
-      <% if session[:user_id]%>
-        <li class="navbar-item"><%= link_to "ADD NEW PRODUCT", new_product_path, class: "nav-link" %> </li> 
-        <li class="navbar-item"><%= link_to "LOGOUT", github_login_path, class: "nav-link" %> </li> 
+        </li>
+        <li class="dropdown-submenu">
+          <a class="test" tabindex="-1" href="#">MERCHANTS <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <% Merchant.all.each do |merchant| %>
+              <li><%= link_to merchant.username.upcase, merchant_products_path(merchant.id) %></li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+        <% if session[:user_id]%>
+          <li class="navbar-item"><%= link_to "ADD NEW PRODUCT", new_product_path, class: "nav-link" %> </li> 
+          <li class="navbar-item"><%= link_to "LOGOUT", logout_path, class: "nav-link" %> </li> 
 
-      <% else %>
-        <li class="navbar-item"><%= link_to "LOGIN", github_login_path, class: "nav-link" %> </li> 
-      <%end %>
-</nav>
+        <% else %>
+          <li class="navbar-item"><%= link_to "LOGIN", github_login_path, class: "nav-link" %> </li> 
+        <%end %>
+  </nav>
 
 
-<script>
-$(document).ready(function(){
-  $('.dropdown-submenu a.test').on("click", function(e){
-    $(this).next('ul').toggle();
-    e.stopPropagation();
-    e.preventDefault();
+  <script>
+  $(document).ready(function(){
+    $('.dropdown-submenu a.test').on("click", function(e){
+      $(this).next('ul').toggle();
+      e.stopPropagation();
+      e.preventDefault();
+    });
   });
-});
-</script>
+  </script>
 
-  </header>
-<div>
-  <% if flash %>
-    <% flash.each do |key, val| %>
-      <%= val %>
+</header>
+  <div>
+    <% if flash %>
+      <% flash.each do |key, val| %>
+        <p class="alert alert-<%= key.to_s == "error" ? 'warning' : 'success' %>"><%= val %></p>
+      <%end %>
     <%end %>
-  <%end %>
-
-
-  
-</div>
+  </div>
 
   <body>
     <%= yield %>

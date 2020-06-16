@@ -51,4 +51,18 @@ input {
   width: 60%;
 }
 
+.show-header{
+  margin: 5%;
+  text-align: center;
+}
 
+.reviews{
+  width: 50%;
+}
+
+.show-content {
+  margin-left: 20%;
+  width: 60%;
+  display: grid;
+  grid-template-columns: 70% 30%;
+}

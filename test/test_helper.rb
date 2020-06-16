@@ -1,3 +1,4 @@
+require 'simplecov'
 
 
 ENV['RAILS_ENV'] ||= 'test'
@@ -6,6 +7,7 @@ require 'rails/test_help'
 require "minitest/rails"
 require "minitest/reporters"  # for Colorized output
 #  For colorful output!
+SimpleCov.start
 Minitest::Reporters.use!(
   Minitest::Reporters::SpecReporter.new,
   ENV,
