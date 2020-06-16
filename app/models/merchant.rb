@@ -15,9 +15,4 @@ class Merchant < ApplicationRecord
     return merchant
   end
 
-  # do we need this method?
-  def merchant_products
-    @merchant = Merchant.find_by(id: params[:id])
-    @merchant_products = @merchant.products
-  end
 end
