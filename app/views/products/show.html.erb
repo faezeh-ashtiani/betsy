@@ -37,36 +37,4 @@
   </section>
 <div>
 
-  <h3><%= @product.name %></h3>
-  <%= image_tag @product.img_url, alt: @product.description %>
-  <h5><%= @product.description %></h4>
-  <h6><%= "$#{'%.2f' % @product.price}" %></h6>
-  <h5>Review & Rating</h4>
-  <h6>Overall Rating Based on 1 Review(s) <%= @product.average_rating %> <%= @reviews.length %></h6>
-  <%= render partial: "reviews/rating", locals: { action_name: "Submit Review", product: @product } %>
-  <% if @reviews.length != 0 %>
-    <ul>
-      <% @reviews.each do |review| %>
-        <li><%= review.created_at.strftime("%B %e, %Y") %>: <%= review.rating %></li>
-        <li><%= review.description %></li>
-      <% end %>
-    </ul>
-  <% end %>
-  
-</div>
-</div>
-
-
-
-<p> Left in Stock: <%=@product.qty%> </p> 
- <div class="form">
-     <%= form_with scope: :post, url: add_to_cart_path do |f| %>
-         <%= f.label "Quantity:" %>
-         <%= f.text_field :qty %>
-
-         <%= f.submit "Add to Cart" %>
-      <% end %>
-</div>  
-
  
-
