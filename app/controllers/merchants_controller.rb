@@ -1,4 +1,14 @@
 class MerchantsController < ApplicationController
+  
+  def show
+    @merchant = Merchant.find_by(id: params[:id])
+
+    if @merchant.nil?
+      flash[:error] = "Must be logged in as that merchant to view their dashboard"
+      redirect_to root_path
+      return
+    end
+  end 
 
   def create
     auth_hash = request.env["omniauth.auth"]

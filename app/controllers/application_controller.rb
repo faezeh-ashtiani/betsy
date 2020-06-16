@@ -1,11 +1,9 @@
 class ApplicationController < ActionController::Base
+  before_action :current_merchant
 
   def current_merchant
-    if session[:user_id] == nil
-      return nil
-    else
-      merchant = Merchant.find(session[:user_id])
-      return merchant
+    if session[:user_id]
+      @current_merchant = Merchant.find_by(id: session[:user_id])
     end
   end
 
