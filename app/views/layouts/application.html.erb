@@ -34,24 +34,16 @@
               <li><%= link_to merchant.username, merchant_products_path(merchant.id) %></li>
             <% end %>
           </ul>
-          </li>
-          <li class="dropdown-submenu">
-            <a class="test" tabindex="-1" href="#">MERCHANTS <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <% Merchant.all.each do |merchant| %>
-                <li><%= link_to merchant.username.upcase, merchant_products_path(merchant.id) %></li>
-              <% end %>
-            </ul>
-          </li>
-        </ul>
-          <% if session[:user_id]%>
-            <li class="navbar-item"><%= link_to "ADD NEW PRODUCT", new_product_path, class: "nav-link" %> </li> 
-            <li class="navbar-item"><%= link_to "LOGOUT", logout_path, class: "nav-link" %> </li> 
-
-          <% else %>
-            <li class="navbar-item"><%= link_to "LOGIN", github_login_path, class: "nav-link" %> </li> 
-          <%end %>
-    </nav>
+        </li>
+      </ul>
+        <% if @current_merchant %>
+          <li class="navbar-item"><%= link_to "ADD NEW PRODUCT", new_product_path, class: "nav-link" %> </li> 
+          <li class="navbar-item"><%= link_to "LOGOUT", logout_path, method: :delete, class: "nav-link" %> </li> 
+          <li class="navbar-item"><%= link_to "LOGGED IN AS #{@current_merchant.username}", merchant_path(@current_merchant.id), class: "nav-link" %> </li> 
+        <% else %>
+          <li class="navbar-item"><%= link_to "LOGIN", github_login_path, class: "nav-link" %> </li> 
+        <%end %>
+  </nav>
 
 
     <script>

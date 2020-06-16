@@ -1,0 +1,15 @@
+<h2> <%= "#{@merchant.username.upcase}"%> Dashboard </h2>
+
+<p>Joined site <%= @merchant.created_at %></p>
+
+<h3> My Products </h3>
+<% @merchant.products.each do |product| %>
+  <section class="product_square">
+
+    <%= image_tag product.img_url, alt: product.description %>
+    <h4><%= link_to product.name.upcase, product_path(product.id) %></h4>
+    <h5><%# product.description %></h5>
+    <h6>$<%= sprintf('%.2f', product.price) %></h6>
+    <h6> EDIT PRODUCT</h6> <%#TODO: Implement%>
+  </section>
+<% end %>

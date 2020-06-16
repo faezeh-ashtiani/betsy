@@ -3,10 +3,11 @@ Rails.application.routes.draw do
   get 'products/index'
 
   root to: 'products#index'
+
+  # oauth routes 
   get "/auth/github", as: "github_login"
-  post "/logout", to: "merchants#logout", as: "logout"
   get "/auth/:provider/callback", to: "merchants#create", as: 'callback'
-  
+  delete "/logout", to: "merchants#logout", as: "logout"
   
   resources :merchants
 
