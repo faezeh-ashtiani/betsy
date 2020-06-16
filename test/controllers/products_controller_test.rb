@@ -115,8 +115,18 @@ describe ProductsController do
   
         must_respond_with :bad_request
       end
-    end
 
+      # it "will not create a product while session user_id is nil" do
+      #   session[:user_id] = nil
+  
+      #   expect {
+      #     post products_path, params: product_hash
+      #   }.must_differ "Product.count", 0
+  
+      #   must_redirect_to root_path
+      # end
+    end
+   
     describe "update" do
 
       before do
