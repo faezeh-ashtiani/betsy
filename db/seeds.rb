@@ -36,7 +36,14 @@ puts "Loading raw product data from #{PRODUCT_FILE}"
 
 product_failures = []
 CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
-  if !Product.create!(id: row['id'] , name:row['name'] , price:row['price'].to_f , img_url: row['img_url'], description: row['description'], qty: row['qty'].to_i , merchant: Merchant.all.sample)
+  if !Product.create!(
+    id: row['id'],
+    name:row['name'],
+    price:row['price'].to_f,
+    img_url: row['img_url'],
+    description: row['description'],
+    qty: row['qty'].to_i,
+    merchant: Merchant.all.sample)
     product_failures << product
     puts "Failed to save product: "
   else
@@ -71,6 +78,28 @@ Product.all.each do |product|
   product.categories.concat(Category.all.sample(3))
   product.save
 end
+
+REVIEW_FILE = Rails.root.join('db', 'reviews_seeds.csv')
+puts "Loading raw product data from #{REVIEW_FILE}"
+
+review_failures = []
+CSV.foreach(REVIEW_FILE, :headers => true) do |row|
+  review = Review.new
+  review.id = row['id']
+  review.rating = row['rating']
+  review.description = row['description']
+  review.product = Product.all.sample
+  successful = review.save
+  if !successful
+    review_failures << review
+    puts "Failed to save review: #{review.inspect}"
+  else
+    puts "Created review: #{review.inspect}"
+  end
+end
+
+puts "Added #{Review.count} review records"
+puts "#{review_failures.length} review failed to save"
 
 # Since we set the primary key (the ID) manually on each of the
 # tables, we've got to tell postgres to reload the latest ID

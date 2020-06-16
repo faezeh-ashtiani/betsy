@@ -9,7 +9,7 @@ id,name,price,img_url,description,qty
 8,Murder Hornet killer,9.99,https://live.staticflickr.com/65535/49992273066_b40629933d_m.jpg,Kill them before they kill you!,500
 9,Gas Mask,23.00,https://live.staticflickr.com/65535/49992523982_bf4bff7be3_m.jpg,a mask that can protect you against tear or pepper gas and some other chemicals,87
 10,Monitor,500.00,https://live.staticflickr.com/65535/49991754648_4ced98a5cc_m.jpg,Upgrade your desk experience with this monitor,5
-11,Black Marker,3.49,https://live.staticflickr.com/65535/50010645141_15c5cdf507.jpg,Use for drawing in on a poster or keep at your desk - it comes handy,125
+11,Black Marker,3.49,https://live.staticflickr.com/65535/50010645141_15c5cdf507_m.jpg,Use for drawing in on a poster or keep at your desk - it comes handy,125
 12,Disposable Face Mask,7.22,https://live.staticflickr.com/65535/50010227178_8ba4860b42_n.jpg,HIGH PROTECTION: Our high-quality filtering face masks ensure a physical barrier to smoke- droplets- dirt- dust and powder. With the new 3-ply design and It can help block pollution so you can breathe easily and safely in any environment.,1000
 13,Canned Soup,2.00,https://live.staticflickr.com/65535/50010227178_8ba4860b42_n.jpg,Campbell's Microwavable Soup at Hand- Classic Tomato- 10.75 oz. Cans- 8 Cans/Box,50
 14,Fever Thermometer,12.17,https://live.staticflickr.com/65535/50010235008_102d792895_n.jpg,Quick & Color-Coded: this Thermometer Provides Accurate Readings in Only 8 Seconds,55
@@ -20,7 +20,7 @@ id,name,price,img_url,description,qty
 19,Puzzle,15.00,https://live.staticflickr.com/65535/50010822346_99ffff0f09_n.jpg,pass the time and don't loose brain power while staying at home,45
 20,Space-x t-shirt,22.99,https://live.staticflickr.com/65535/50010824856_8ac1fc3c7a_n.jpg,spacex launch merchandize- don't forget a historic moment,77
 21,Space-x hat,21.00,https://live.staticflickr.com/65535/50011090867_be46cfc13b_n.jpg,spacex launch merchandize- don't forget a historic moment,37
-22,BLM shirt,25.00,0,https://live.staticflickr.com/65535/50011092522_3b502a15c2_n.jpg,support this amazing movement - and donate to your local charity,55
+22,BLM shirt,25.00,https://live.staticflickr.com/65535/50011092522_3b502a15c2_m.jpg,support this amazing movement - and donate to your local charity,55
 23,BLM hat,20.00,https://live.staticflickr.com/65535/50010830461_59f8b7575e_n.jpg,support this amazing movement - and donate to your local charity,55
 24,The Intelligent Investor,14.29,https://live.staticflickr.com/65535/50010833156_874ba17179_n.jpg,The Intelligent Investor (1949) by Benjamin Graham (book) - Vital and indispensable- The Intelligent Investor is the most important book you will ever read on how to reach your financial goals.,12
 25,One Up On Wall Street,9.49,https://live.staticflickr.com/65535/50010314433_4fe5cb47a0_n.jpg,One Up On Wall Street (1989) by Peter Lynch: How To Use What You Already Know To Make Money In The Market,35
