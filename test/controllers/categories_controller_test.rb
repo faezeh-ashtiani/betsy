@@ -1,5 +1,7 @@
 require "test_helper"
 
+
+
 describe CategoriesController do
   
   describe "Guest users" do
@@ -30,7 +32,7 @@ describe CategoriesController do
 
     it "can create a category" do
       expect {
-        post categorys_path, params: category_hash
+        post categories_path, params: category_hash
       }.must_differ 'Category.count', 1
   
       must_respond_with :redirect
@@ -42,10 +44,18 @@ describe CategoriesController do
       category_hash[:category][:name] = nil
 
       expect {
-        post categorys_path, params: category_hash
+        post categories_path, params: category_hash
       }.must_differ "Category.count", 0
 
       must_respond_with :bad_request
+    end
+  end
+
+  describe "new" do
+    it "can get the new_category_path" do
+      get new_category_path
+
+      must_respond_with :success
     end
   end
 end
