@@ -28,8 +28,10 @@
     <p> Left in Stock: <%=@product.qty%> </p> 
     <div class="form">
         <%= form_with scope: :post, url: add_to_cart_path do |f| %>
+          <div> 
             <%= f.label "Quantity:" %>
             <%= f.text_field :qty %>
+          </div>
 
             <%= f.submit "Add to Cart" %>
           <% end %>
