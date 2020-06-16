@@ -37,7 +37,7 @@
     </ul>
       <% if session[:user_id]%>
         <li class="navbar-item"><%= link_to "ADD NEW PRODUCT", new_product_path, class: "nav-link" %> </li> 
-        <li class="navbar-item"><%= link_to "LOGOUT", github_login_path, class: "nav-link" %> </li> 
+        <li class="navbar-item"><%= link_to "LOGOUT", logout_path, class: "nav-link" %> </li> 
 
       <% else %>
         <li class="navbar-item"><%= link_to "LOGIN", github_login_path, class: "nav-link" %> </li> 
@@ -59,7 +59,8 @@ $(document).ready(function(){
 <div>
   <% if flash %>
     <% flash.each do |key, val| %>
-      <%= val %>
+      
+      <p class="alert alert-<%= key.to_s == "error" ? 'warning' : 'success' %>"><%= val %></p>
     <%end %>
   <%end %>
 
