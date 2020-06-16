@@ -9,8 +9,13 @@
   <main class='product-index'> 
     <% variable.each do |product| %>
       <section class="product_square">
+<<<<<<< HEAD
+        <%= image_tag product.img_url, alt: product.name %>
+          <h4><%= link_to product.name, product_path(product.id) %></h4>
+=======
         <%= image_tag product.img_url, alt: product.description %>
           <h4><%= link_to product.name.upcase, product_path(product.id) %></h4>
+>>>>>>> bb7a680398a4f8d0ebe39b17b610afb8cc80c163
           <h6>$<%= sprintf('%.2f', product.price) %></h6>
       </section>
     <% end %>

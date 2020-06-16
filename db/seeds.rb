@@ -36,7 +36,14 @@ puts "Loading raw product data from #{PRODUCT_FILE}"
 
 product_failures = []
 CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
-  if !Product.create!(id: row['id'] , name:row['name'] , price:row['price'].to_f , img_url: row['img_url'], description: row['description'], qty: row['qty'].to_i , merchant: Merchant.all.sample)
+  if !Product.create!(
+    id: row['id'],
+    name:row['name'],
+    price:row['price'].to_f,
+    img_url: row['img_url'],
+    description: row['description'],
+    qty: row['qty'].to_i,
+    merchant: Merchant.all.sample)
     product_failures << product
     puts "Failed to save product: "
   else
@@ -72,10 +79,71 @@ Product.all.each do |product|
   product.save
 end
 
-# Since we set the primary key (the ID) manually on each of the
-# tables, we've got to tell postgres to reload the latest ID
-# values. Otherwise when we create a new record it will try
-# to start at ID 1, which will be a conflict.
+REVIEW_FILE = Rails.root.join('db', 'reviews_seeds.csv')
+puts "Loading raw product data from #{REVIEW_FILE}"
+
+review_failures = []
+CSV.foreach(REVIEW_FILE, :headers => true) do |row|
+  review = Review.new
+  review.id = row['id']
+  review.rating = row['rating']
+  review.description = row['description']
+  review.product = Product.all.sample
+  successful = review.save
+  if !successful
+    review_failures << review
+    puts "Failed to save review: #{review.inspect}"
+  else
+    puts "Created review: #{review.inspect}"
+  end
+end
+
+puts "Added #{Review.count} review records"
+puts "#{review_failures.length} review failed to save"
+
+ORDER_FILE = Rails.root.join('db', 'orders_seeds.csv')
+puts "Loading raw product data from #{ORDER_FILE}"
+
+order_failures = []
+CSV.foreach(ORDER_FILE, :headers => true) do |row|
+  order = Order.new
+  order.id = row['id']
+  order.name = row['name']
+  order.credit_card = row['credit_card']
+  order.status = row['status']
+  order.street_address = row['street_address']
+  order.city_state_zip = row['city_state_zip']
+  successful = order.save
+  if !successful
+    order_failures << order
+    puts "Failed to save order: #{order.inspect}"
+  else
+    puts "Created order: #{order.inspect}"
+  end
+end
+
+puts "Added #{Order.count} order records"
+puts "#{order_failures.length} order failed to save"
+
+order_item_failures = []
+100.times do |i|
+  order_item = OrderItem.new
+  order_item.id = i + 1
+  order_item.qty = rand(1..10)
+  order_item.product = Product.all.sample
+  order_item.order_id = Order.all.sample.id
+  successful = order_item.save
+  if !successful
+    order_item_failures << order_item
+    puts "Failed to save review: #{order_item.inspect}"
+  else
+    puts "Created review: #{order_item.inspect}"
+  end
+end
+
+puts "Added #{OrderItem.count} order_item records"
+puts "#{order_item_failures.length} order_item failed to save"
+
 puts "Manually resetting PK sequence on each table"
 ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)
