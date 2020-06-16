@@ -11,11 +11,11 @@ class Merchant < ApplicationRecord
     merchant.provider = auth_hash["provider"]
     # workaround for Github users that don't have their name shared
     if !auth_hash["info"]["name"].nil? 
-      user.username = auth_hash["info"]["name"]
+      merchant.username = auth_hash["info"]["name"]
     elsif !auth_hash["info"]["nickname"].nil? 
-      user.username = auth_hash["info"]["nickname"]
+      merchant.username = auth_hash["info"]["nickname"]
     else
-      user.username = user.email = auth_hash["info"]["email"]
+      merchant.email = auth_hash["info"]["email"]
     end
     merchant.email = auth_hash["info"]["email"]
 

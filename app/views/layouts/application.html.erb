@@ -37,7 +37,7 @@
         </li>
       </ul>
         <% if @current_merchant %>
-          <li class="navbar-item"><%= link_to "ADD NEW PRODUCT", new_product_path, class: "nav-link" %> </li> 
+          <li class="navbar-item"><%= link_to "NEW PRODUCT", new_product_path, class: "nav-link" %> </li> 
           <li class="navbar-item"><%= link_to "LOGOUT", logout_path, method: :delete, class: "nav-link" %> </li> 
           <li class="navbar-item"><%= link_to "LOGGED IN AS #{@current_merchant.username}", merchant_path(@current_merchant.id), class: "nav-link" %> </li> 
         <% else %>
