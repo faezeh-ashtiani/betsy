@@ -13,7 +13,7 @@
 
 .all-products {
   display: grid; 
-  grid-template-rows: 15% 85%;
+  grid-template-rows: 150px auto;
 }
 
 .products-header {
@@ -37,4 +37,18 @@ input {
   width: 60%;
 }
 
+.show-header{
+  margin: 5%;
+  text-align: center;
+}
 
+.reviews{
+  width: 50%;
+}
+
+.show-content {
+  margin-left: 20%;
+  width: 60%;
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
