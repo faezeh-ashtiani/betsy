@@ -34,14 +34,14 @@ class ProductsController < ApplicationController
     if @product.save
       flash[:status] = "Product Created!"
       
-      redirect_to product_path(@product.id)
+      redirect_to merchant_path(@product.merchant_id)
     else
       render :edit, status: :bad_request
       return
     end 
   end 
 
-  def edit    #TODO is this even needed?
+  def edit 
     if @product.nil?
       head :not_found
       return
