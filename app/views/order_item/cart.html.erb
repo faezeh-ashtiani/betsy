@@ -11,23 +11,21 @@
 
 
   <div class="cards">
-  <% @cart.each do |product, val|%>
-      <div class="card">
-        <div class="card-body">
-      
-          <p class="card-title"><%= product.name %> </p>
-        </div>
-        <%= image_tag product.img_url, alt: product.description, class: 'cart-image' %>
+    <% @cart.each do |product, val|%>
+        <div class="card">
           <div class="card-body">
-            <p class="card-text"><%= "$#{'%.2f' % (product.price.to_f * val.to_i)}"%> (<%=val %> x <%= "$#{'%.2f' % product.price}" %>) </p>
-            <div class="edit-links">
-              <%= link_to 'Remove', remove_from_cart_path(product.id), method: :post %>
-              <%= link_to "Edit", product_path(product.id) %>
-            </div>
+            <p class="card-title"><%= product.name.upcase %> </p>
           </div>
-    </div>
+          <%= image_tag product.img_url, alt: product.description, class: 'cart-image' %>
+            <div class="card-body">
+              <p class="card-text"><%= "$#{'%.2f' % (product.price.to_f * val.to_i)}"%> (<%=val %> x <%= "$#{'%.2f' % product.price}" %>) </p>
+              <div class="edit-links">
+                <%= link_to 'REMOVE', remove_from_cart_path(product.id), method: :post %>
+                <%= link_to "EDIT", product_path(product.id) %>
+              </div>
+            </div>
+      </div>
     <% end %>
-
   </div>
  
 

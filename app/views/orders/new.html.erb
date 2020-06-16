@@ -1,10 +1,17 @@
   <%= form_with model: @order do |f| %>
 
-    <%= f.label "Name:" %>
+    <%= f.label "FULL NAME:" %>
     <%= f.text_field :name %>
   
-    <%= f.label "Credit Card Number:" %>
+    <%= f.label "CREDIT CARD NUMBER:" %>
     <%= f.text_field :credit_card %>
+
+    <%= f.label "ADDRESS:" %>
+    <%= f.text_field :street_address %>
+
+
+    <%= f.label "CITY/STATE/ZIP:" %>
+    <%= f.text_field :city_state_zip%>
     
     <%= f.submit "Place Order" %>
 <%end%>
