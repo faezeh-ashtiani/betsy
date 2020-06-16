@@ -3,7 +3,7 @@ class MerchantsController < ApplicationController
   def create
     auth_hash = request.env["omniauth.auth"]
     merchant = Merchant.find_by(uid: auth_hash[:uid], provider: "github")
-    
+   
     if merchant 
       flash[:success] = "Logged in as returning user"
     else 
@@ -16,7 +16,13 @@ class MerchantsController < ApplicationController
         
       end
     end 
+
     session[:user_id] = merchant.id
+
+    # if merchant.username == nil
+    #   merchant.username = merchant.id
+    # end
+
     redirect_to root_path
   end
 
