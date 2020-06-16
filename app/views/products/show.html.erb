@@ -1,24 +1,24 @@
-
-
-
-
-  <div class="show-header">
-    <h3><%= @product.name %></h3>
-    <%= image_tag @product.img_url, alt: @product.description %>
-    <h5><%= @product.description %></h5>
-    <h5><%= "$#{'%.2f' % @product.price}" %></h5>
-  </div>
+<div class="show-header">
+  <h3><%= @product.name %></h3>
+  <%= image_tag @product.img_url, alt: @product.description %>
+  <h5><%= @product.description %></h5>
+  <h5><%= "$#{'%.2f' % @product.price}" %></h5>
+</div>
 
 <div class="show-content">
   <section class='reviews'>
     <h5>Review & Rating</h4>
-    <h6>Overall Rating Based on 1 Review(s) <%= @product.average_rating %> <%= @reviews.length %></h6>
+    <h6>Overall Rating Based on <%= @reviews.length %> Review(s): <%= @product.average_rating %></h6>
     <%= render partial: "reviews/rating", locals: { action_name: "Submit Review", product: @product } %>
     <% if @reviews.length != 0 %>
-      <ul>
+      <ul class="review-list">
         <% @reviews.each do |review| %>
-          <li><%= review.created_at.strftime("%B %e, %Y") %>: <%= review.rating %></li>
-          <li><%= review.description %></li>
+          <li>
+            <strong>
+              <%= review.created_at.strftime("%B %e, %Y") %> - Rating: <%= review.rating %>
+            </strong>
+          </li>
+          <ul class="review-item"><li><%= review.description %></li></ul>
         <% end %>
       </ul>
     <% end %>
