@@ -28,6 +28,23 @@ class OrdersController < ApplicationController
     end 
   end 
 
+  def update 
+    order = Order.find_by(id: params[:id])
+    if order.nil? 
+      flash[:error] = "Contact merchant, something went wrong :("
+      return redirect_to root_path 
+    end 
+
+    if order.update(status: "canceled") && Order.restock_canceled_items(order)
+      flash[:status] = "Order successfully canceled!"
+      return redirect_to root_path
+    else 
+      flash[:error] = "something went wrong :("
+      redirect_to order_path
+      return
+    end 
+  end 
+
 
 
   private 

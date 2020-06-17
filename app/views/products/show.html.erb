@@ -26,7 +26,11 @@
 
   <section>
     <p> Left in Stock: <%=@product.qty%> </p> 
-    <% current_in_cart = OrderItem.current_edit(@product.id, session[:order_items]) %>
+    <%if !session[:order_items].nil? %>
+      <% current_in_cart = OrderItem.current_edit(@product.id, session[:order_items]) %>
+    <% else %>
+      <%current_in_cart = " " %>
+    <% end %>
     <p> Current Quantity in Cart: <%= current_in_cart%>
     <div class="form">
         <%= form_with scope: :post, url: add_to_cart_path do |f| %>
