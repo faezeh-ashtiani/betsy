@@ -25,11 +25,6 @@ class Product < ApplicationRecord
     return product.qty >= order_item_qty.to_i
   end 
 
-  # def self.amount?(product_id, order_item_qty, in_cart)
-  #   product = Product.find_by(id: product_id)
-  #   return product.qty >= (order_item_qty.to_i + in_cart)
-  # end 
-
   def self.update_quantity(product_id, qty)
     product = Product.find_by(id: product_id)
     product.update_attribute(:qty, product.qty -= qty)
