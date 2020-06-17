@@ -6,6 +6,16 @@ class MerchantsController < ApplicationController
       redirect_to root_path
       return
     end
+
+    # create instance variables of the current merchant to be displayed 
+    @paid_orders = @current_merchant.get_orders_by_status("paid")
+    @paid_orders_revenue = @current_merchant.revenue(@paid_orders)
+
+    @completed_orders = @current_merchant.get_orders_by_status("complete")
+    @completed_orders_revenue = @current_merchant.revenue(@completed_orders)
+
+    @all_orders = @current_merchant.get_all_orders
+    @total_revenue = @current_merchant.revenue(@all_orders)
   end 
 
   def create

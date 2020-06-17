@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-  before_action :require_login, only: [:new, :create, :destroy, :update, :edit]
+  before_action :require_login, only: [:new, :create, :destroy, :update, :edit, :destroy]
   before_action :find_product, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -72,7 +72,15 @@ class ProductsController < ApplicationController
   end 
 
   def destroy 
+    if  @product.nil?
+      head :not_found
+      return
+    end
 
+    @product.destroy
+
+    redirect_to merchant_dashboard_path
+    return
   end 
 
   private 

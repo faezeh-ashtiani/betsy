@@ -40,7 +40,7 @@
           <li class="navbar-item"><%= link_to "LOGOUT", logout_path, method: :delete, class: "nav-link" %> </li> 
           <li class="navbar-item"><%= link_to "LOGGED IN AS #{@current_merchant.username}", merchant_dashboard_path, class: "nav-link" %> </li> 
         <% else %>
-          <li class="navbar-item"><%= link_to "LOGIN", github_login_path, class: "nav-link" %> </li> 
+          <li class="navbar-item"><%= link_to "LOGIN / SIGN UP", github_login_path, class: "nav-link" %> </li> 
         <%end %>
   </nav>
 
