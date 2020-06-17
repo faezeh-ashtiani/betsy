@@ -26,13 +26,20 @@
 
   <section>
     <p> Left in Stock: <%=@product.qty%> </p> 
+    <% current_in_cart = OrderItem.current_edit(@product.id, session[:order_items]) %>
+    <p> Current Quantity in Cart: <%= current_in_cart%>
     <div class="form">
         <%= form_with scope: :post, url: add_to_cart_path do |f| %>
           <div> 
-            <%= f.label "Quantity:" %>
-            <%= f.text_field :qty, placeholder: OrderItem.current_edit(@product.id, session[:order_items]) %>
+            <%= f.label "Quantity:"%>
+            <%= f.text_field :qty, placeholder: current_in_cart %>
           </div>
-            <%= f.submit "Add to Cart" %>
+            <% if current_in_cart.to_i > 0 %>
+              <%= f.submit "Update Cart" %>
+            <% else%>
+              <%= f.submit "Add to Cart" %>
+            <% end %>
+
           <% end %>
     </div> 
   </section>
