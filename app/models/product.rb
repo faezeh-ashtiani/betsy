@@ -6,10 +6,10 @@ class Product < ApplicationRecord
   belongs_to :merchant
 
   validates :name, presence: true, uniqueness: true
-  validates :price, presence: true, numericality: true
+  validates :price, presence: true, numericality: { greater_than: 0 }
 
-  validates :qty, presence: true, numericality: { only_integer: true }
-
+  validates :qty, presence: true, numericality: { only_integer: true, :greater_than_or_equal_to => 0  }
+#TODO chelsea added :greater_than_or_equal_to => 0  need to test
   def average_rating
     if self.reviews.length == 0
       return 0

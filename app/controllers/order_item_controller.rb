@@ -8,7 +8,7 @@ class OrderItemController < ApplicationController
 
     if session[:order_items] 
       item = OrderItem.create!(qty: (params[:post][:qty]).to_i, product_id: params[:id])
-      if item.qty < 1 #TODO write test for this
+      if item.qty < 1 
         flash[:error] = "Before adding to cart please specify a quantity"
         return redirect_to root_path
       end
@@ -19,7 +19,7 @@ class OrderItemController < ApplicationController
         if order_item.key(item.product_id)
           foundCartEntry = true
           if Product.amount?(params[:id], params[:post][:qty], order_item["qty"])
-            order_item["qty"] += item.qty
+            order_item["qty"] = item.qty
             flash[:status] = "Added to Cart!"
           else
             flash[:error] = "Not enough stock. Please note you already have some in your cart."

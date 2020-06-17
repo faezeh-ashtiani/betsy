@@ -1,6 +1,6 @@
 class OrderItem < ApplicationRecord
   belongs_to :product
-  validates :qty, presence: true, numericality: { only_integer: true }
+  validates :qty, presence: true, numericality: { only_integer: true, greater_than: 0 }
   
   def self.display_items(order_items)  
     unique_items = {}
@@ -23,6 +23,15 @@ class OrderItem < ApplicationRecord
         end 
       end
       return updated_cart
+    end 
+
+    def self.current_edit(product_id, session) 
+        session.each do |item|
+          if item["product_id"] == product_id
+           return item["qty"].to_s
+          end 
+        end 
+      return ""
     end 
 end
 

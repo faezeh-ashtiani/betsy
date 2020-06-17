@@ -41,6 +41,7 @@ class ProductsController < ApplicationController
       
       redirect_to merchant_dashboard_path
     else
+      flash[:error] = "Product did not save"
       render :edit, status: :bad_request
       return
     end 
