@@ -72,7 +72,15 @@ class ProductsController < ApplicationController
   end 
 
   def destroy 
+    if  @product.nil?
+      head :not_found
+      return
+    end
 
+    @product.destroy
+
+    redirect_to merchant_dashboard_path
+    return
   end 
 
   private 

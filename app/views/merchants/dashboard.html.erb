@@ -13,6 +13,7 @@
     <h5><%= product.description %></h5>
     <h6>$<%= sprintf('%.2f', product.price) %></h6>
     <h6><%= link_to "EDIT PRODUCT", edit_product_path(product.id) %></h6>
+    <h6><%= link_to "DELETE PRODUCT", product_path(product.id), method: :delete %></h6>
   </section>
 <% end %>
 
