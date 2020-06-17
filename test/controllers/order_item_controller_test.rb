@@ -55,9 +55,6 @@ describe OrderItemController do
         post: { qty: 2 }
       }
       post add_to_cart_path(product2.id), params: par2
-
-      # binding.pry
-
       
       session[:order_items].each do |item|
         if item["product_id"] == product1.id
@@ -88,23 +85,6 @@ describe OrderItemController do
       }
       post remove_from_cart_path, params: param
       get cart_path
-      # product = products(:product1)
-      # product2 = products(:product2)
-
-      # session = {
-      #   order_items: []
-      # }
-      # session[:order_items] << OrderItem.create!(qty: 1, product_id: product.id)
-      # session[:order_items] << OrderItem.create!(qty: 1, product_id: product2.id)
-
-      # get cart_path, params: {format: product.id}
-
-      # expect(@cart.length).must_equal 1 
-      # @cart.length.must_equal 2
-   
-      # post remove_from_cart_path(par2[:id])
-
-      # expect(@cart.length).must_equal 1 
     end 
   end
   describe "cart" do 

@@ -12,25 +12,11 @@ class OrderItemController < ApplicationController
     end 
 
     if session[:order_items] 
-      # item = OrderItem.create!(qty: (params[:post][:qty]).to_i, product_id: params[:id])
-      # if ((params[:post][:qty]).to_i)< 1 
-      #   flash[:error] = "Before adding to cart please specify a quantity"
-      #   return redirect_to root_path
-      # end
-    
       foundCartEntry = false
-      
       session[:order_items].each do |order_item|
-        # item = OrderItem.create!(qty: (params[:post][:qty]).to_i, product_id: params[:id])
+       
         if order_item.key(params[:id])
-          foundCartEntry = true
-          # if Product.available?(params[:id], params[:post][:qty])
-          #   order_item["qty"] = params[:post][:qty]
-          #   flash[:status] = "Added to Cart!!!"
-          # else
-          #   flash[:error] = "Not enough stock. Please note you already have some in your cart."
-          # end 
-          
+          foundCartEntry = true 
         end
       end
 
