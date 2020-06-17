@@ -26,6 +26,11 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(new_product_params)
+  
+    if @product.img_url == ""
+      @product.img_url = "https://live.staticflickr.com/65535/50015899763_886c9985f5_m.jpg"
+    end
+
     # if session[:user_id] == nil  #TODO double chekc that this is not needed
     #   redirect_to root_path 
     # end

@@ -114,14 +114,6 @@ describe Product do
       expect(product4.errors.messages).must_include :price
     end
 
-    it "is invalid without a image url" do
-      product4.img_url = nil
-      
-      expect(product4.valid?).must_equal false
-      expect(product4.errors.messages).must_include :img_url
-    end
-
-
     it "is invalid without a qty" do
       product4.qty = nil
       

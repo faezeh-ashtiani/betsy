@@ -7,7 +7,7 @@ class Product < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates :price, presence: true, numericality: true
-  validates :img_url, presence: true
+
   validates :qty, presence: true, numericality: { only_integer: true }
 
   def average_rating
