@@ -4,18 +4,24 @@ describe Order do
   describe "order to order item relation" do
 
     it "can have many order_items" do
-      expect(orders(:order1)).must_respond_to :order_items
-      expect(orders(:order1).order_items.length).must_equal 3
-      orders(:order1).order_items.each do |order_item|
-        expect(order_item).must_be_instance_of OrderItem
-      end
+      order = orders(:order1)
+      order.order_items << order_items(:order_item1)
+      order.order_items << order_items(:order_item2)
+      expect(order).must_respond_to :order_items
+      expect(order.order_items.length).must_equal 2
+      order.order_items.each do |order_item|
+         expect(order_item).must_be_instance_of OrderItem
+       end
     end
 
     it "has many products thrugh oreder_items" do
-      expect(orders(:order1)).must_respond_to :products
-      expect(orders(:order1).products.length).must_equal 3
-      orders(:order1).products.each do |product|
-        expect(product).must_be_instance_of Product
+      order = orders(:order1)
+      order.order_items << order_items(:order_item1)
+      expect(order.order_items[0]).must_respond_to :product_id
+      expect(order.order_items.length).must_equal 1
+      order.order_items.each do |product|
+        prod = Product.find_by(id: product.product_id)
+        expect(prod).must_be_instance_of Product
       end
     end
 
