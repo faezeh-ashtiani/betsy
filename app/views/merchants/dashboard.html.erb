@@ -1,14 +1,16 @@
-<section class="all-products">
-  <div class='products-header'>
+<section class="all-merch-products">
+  <div class='merch-products-header'>
     <h2 > <%= "#{@current_merchant.username.upcase}"%> Dashboard </h2>
     <p>Joined site on <%= @current_merchant.created_at.strftime("%B %e, %Y") %></p>
     <%= link_to "ADD NEW PRODUCT", new_product_path, class: "nav-link" %>
+    <br>
+    <h3> Your Products </h3>
   </div>
    
-  <main class='product-index'>
-    <% @current_merchant.products.each do |product| %>
-      <section class="product_square">
 
+  <main class='merch-product-index'>
+    <% @current_merchant.products.each do |product| %>
+      <section class="merch-product_square">
         <%= image_tag product.img_url, alt: product.description %>
         <h4><%= link_to product.name.upcase, product_path(product.id) %></h4>
         <h5><%= product.description %></h5>

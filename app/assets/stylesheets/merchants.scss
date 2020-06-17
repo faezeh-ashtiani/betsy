@@ -1,3 +1,27 @@
 // Place all the styles related to the Merchants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.all-merch-products {
+  display: grid; 
+  grid-template-rows: 200px auto;
+}
+
+.merch-products-header {
+  text-align: center;
+  padding: 5%;
+}
+
+.merch-product-index {
+  width: 90%;
+  padding: 5% 0 0 10%;
+  display: grid;
+  grid-template: 1fr 1fr  1fr /  1fr 1fr 1fr;
+  grid-gap: 5%;
+  margin: 0;
+}
+
+.merch-product_square {
+  display: grid;
+  grid-template-rows: 200px 30px 30px;
+}
