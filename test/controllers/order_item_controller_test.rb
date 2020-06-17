@@ -26,6 +26,47 @@ describe OrderItemController do
       expect(@cart).must_equal nil
       must_redirect_to root_path
     end 
+
+    it "will not add product if they try to add 0 to thier cart" do 
+      product = products(:product2)
+      par = {
+        id: 1, 
+        post: { qty: 0 }
+      }
+      
+      post add_to_cart_path(product.id), params: par 
+
+      expect(@cart).must_equal nil
+      must_redirect_to root_path
+    end 
+
+    it "can add product when there is already a product" do 
+      product1 = products(:product1)
+      par1 = {
+        id: 1, 
+        post: { qty: 1 }
+      }
+      
+      post add_to_cart_path(product1.id), params: par1 
+
+      product2 = products(:product2)
+      par2 = {
+        id: 2, 
+        post: { qty: 2 }
+      }
+      post add_to_cart_path(product2.id), params: par2
+
+      # binding.pry
+
+      
+      session[:order_items].each do |item|
+        if item["product_id"] == product1.id
+          expect(item["qty"]).must_equal 1
+        elsif item["product_id"] == product2.id
+          expect(item["qty"]).must_equal 2
+        end
+      end   
+    end 
   end 
 
 
@@ -65,7 +106,12 @@ describe OrderItemController do
 
       # expect(@cart.length).must_equal 1 
     end 
-
-
-  end 
+  end
+  describe "cart" do 
+    it "will redirect if session[order_items] is nil" do 
+      get cart_path
+      must_redirect_to root_path
+      flash[:error].must_equal "You have nothing in your cart!"
+    end
+  end
 end
