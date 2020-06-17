@@ -4,7 +4,7 @@ class Order < ApplicationRecord
 
   validates :name, presence: true
   validates :credit_card, presence: true, length: { is: 16 }
-  validates :status, presence: true, inclusion: { in: ["paid", "complete"] }
+  validates :status, presence: true, inclusion: { in: ["paid", "complete", "canceled"] }
 
 
   def self.order_total(order_items) 
@@ -15,5 +15,15 @@ class Order < ApplicationRecord
     return total + (total*(0.1))
   end 
 
+
+  def self.restock_canceled_items(order)
+    order.order_items.each do |item|
+      product = Product.find_by(id: item.product_id)
+      if !product.update(qty: (item.qty + product.qty))
+        return false
+      end 
+    end 
+    return true
+  end 
 
 end
