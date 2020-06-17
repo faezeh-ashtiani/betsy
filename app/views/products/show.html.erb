@@ -30,7 +30,7 @@
         <%= form_with scope: :post, url: add_to_cart_path do |f| %>
           <div> 
             <%= f.label "Quantity:" %>
-            <%= f.text_field :qty %>
+            <%= f.text_field :qty, placeholder: OrderItem.current_edit(@product.id, session[:order_items]) %>
           </div>
             <%= f.submit "Add to Cart" %>
           <% end %>
