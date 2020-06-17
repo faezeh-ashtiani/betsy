@@ -22,7 +22,6 @@ class Merchant < ApplicationRecord
     return merchant
   end
 
-
   def get_all_orders
     order_ids = []
 
@@ -31,8 +30,9 @@ class Merchant < ApplicationRecord
         order_ids << item.order_id
       end
     end
-
-    orders = order_ids.map{ |order_id|
+    
+    # returns array of all orders with a product in it that is owned by this merchant 
+    orders = order_ids.uniq.map{ |order_id|
       Order.find_by(id: order_id)
     }
 
@@ -42,6 +42,7 @@ class Merchant < ApplicationRecord
   def get_orders_by_status(status)
     all_orders = self.get_all_orders
    
+    # returns orders only with specified status 
     return all_orders.select {|order| order.status == status}
   end
 
@@ -55,10 +56,23 @@ class Merchant < ApplicationRecord
     return all_order_items.select {|item| item.product.merchant_id == self.id}
   end 
 
-  # calculate revenue of all orders with status "complete"
+  def revenue(orders)
+    my_order_items = []
+    total_order_items = []
+    total_revenue = 0.0
 
-  # calculate revenue of all orders with status "paid"
+    orders.each do |order|
+      my_order_items = self.find_my_order_items(order)
 
-  # total revenue 
+      total_order_items += my_order_items
+    end 
+
+    total_order_items.each do |item|
+      product = Product.find_by(id: item.product_id)
+      total_revenue += product.price * item.qty
+    end 
+
+    return total_revenue.round(2)
+  end 
 
 end
