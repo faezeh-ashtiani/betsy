@@ -6,32 +6,33 @@
     <br>
     <h3> Your Products </h3>
   </div>
-   
 
-  <main class='merch-product-index'>
+  <div class='merch-product-index'>
     <% @current_merchant.products.each do |product| %>
       <section class="merch-product_square">
         <%= image_tag product.img_url, alt: product.description %>
         <h4><%= link_to product.name.upcase, product_path(product.id) %></h4>
-        <h5><%= product.description %></h5>
         <h6>$<%= sprintf('%.2f', product.price) %></h6>
         <h6><%= link_to "EDIT PRODUCT", edit_product_path(product.id) %></h6>
         <h6><%= link_to "DELETE PRODUCT", product_path(product.id), method: :delete %></h6>
       </section>
     <% end %>
-  </main>
+  </div>
+
+  <div class="fulfilment-report">
+    <h3> Your Revenue Report </h3>
+
+    <h4> Total Revenue: </h4>
+
+    <h4> Total Revenue (paid orders): </h4>
+
+    <h4> Total Revenue (complete orders): </h4>
+
+    <h3> Your Orders </h3>
+
+    <h4> Paid Orders: </h4>
+
+    <h4> Completed Orders: </h4>
+  </div>
 </section>
 
-<h3> Your Revenue Report </h3>
-
-<h4> Total Revenue: </h4>
-
-<h4> Total Revenue (paid orders): </h4>
-
-<h4> Total Revenue (complete orders): </h4>
-
-<h3> Your Orders </h3>
-
-<h4> Paid Orders: </h4>
-
-<h4> Completed Orders: </h4>
