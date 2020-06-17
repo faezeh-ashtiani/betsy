@@ -39,8 +39,9 @@ class ProductsController < ApplicationController
     if @product.save
       flash[:status] = "Product Created!"
       
-      redirect_to merchant_path(@product.merchant_id)
+      redirect_to merchant_dashboard_path
     else
+      flash[:error] = "Product did not save"
       render :edit, status: :bad_request
       return
     end 

@@ -2,7 +2,7 @@
 
 <p>Joined site <%= @current_merchant.created_at.strftime("%B %e, %Y") %></p>
 
-<h3> <%= @current_merchant.username %>'s Products </h3>
+<h3> Your Products </h3>
 <%= link_to "ADD NEW PRODUCT", new_product_path, class: "nav-link" %>
 
 <% @current_merchant.products.each do |product| %>
@@ -15,3 +15,17 @@
     <h6><%= link_to "EDIT PRODUCT", edit_product_path(product.id) %></h6>
   </section>
 <% end %>
+
+<h3> Your Revenue Report </h3>
+
+<h4> Total Revenue: </h4>
+
+<h4> Total Revenue (paid orders): </h4>
+
+<h4> Total Revenue (complete orders): </h4>
+
+<h3> Your Orders </h3>
+
+<h4> Paid Orders: </h4>
+
+<h4> Completed Orders: </h4>
