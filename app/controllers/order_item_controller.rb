@@ -1,13 +1,19 @@
 class OrderItemController < ApplicationController
 
   def add_to_cart  
+
     if !Product.available?(params[:id], params[:post][:qty])
       flash[:error] = "Not enough in stock"
       return redirect_to root_path
     end 
 
     if session[:order_items] 
-      session[:order_items] << OrderItem.create!(qty: params[:post][:qty], product_id: params[:id])
+      item = OrderItem.create!(qty: (params[:post][:qty]).to_i, product_id: params[:id])
+      if item.qty < 1
+        flash[:error] = "Before adding to cart please specify a quantity"
+        return redirect_to root_path
+      end
+      session[:order_items] << OrderItem.create!(qty: (params[:post][:qty]).to_i, product_id: params[:id])
       flash[:status] = "Added to Cart!"
     else
       session[:order_items] = []
