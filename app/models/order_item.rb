@@ -1,7 +1,7 @@
 class OrderItem < ApplicationRecord
   belongs_to :product
-  validates :qty, presence: true, numericality: { only_integer: true }
-  
+  validates :qty, presence: true, numericality: { only_integer: true}
+
   def self.display_items(order_items)  
     unique_items = {}
     order_items.each do |item|
