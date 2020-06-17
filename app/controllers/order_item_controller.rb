@@ -1,7 +1,6 @@
 class OrderItemController < ApplicationController
 
   def add_to_cart  
-
     if !Product.available?(params[:id], params[:post][:qty])
       flash[:error] = "Not enough in stock"
       return redirect_to root_path
@@ -19,8 +18,12 @@ class OrderItemController < ApplicationController
       session[:order_items].each do |order_item|
         if order_item.key(item.product_id)
           foundCartEntry = true
-          order_item["qty"] += item.qty
-          flash[:status] = "Added to Cart!"
+          if Product.amount?(params[:id], params[:post][:qty], order_item["qty"])
+            order_item["qty"] += item.qty
+            flash[:status] = "Added to Cart!"
+          else
+            flash[:error] = "Not enough stock. Please note you already have some in your cart."
+          end 
         end
       end
 
