@@ -38,14 +38,17 @@ describe OrderItem do
     end
 
     it "cannot creat a new order_item with a non integer qty" do
-      order_item4.save
-      order_item5 = OrderItem.new(
-        qty: 3.00,
-        product_id: products(:product2).id,
-        order_id: orders(:order2).id
-      )
-      expect(order_item5.valid?).must_equal false
-      expect(order_item5.errors.messages).must_include :qty
+      order_item4.qty = 3.00
+      
+      expect(order_item4.valid?).must_equal false
+      expect(order_item4.errors.messages).must_include :qty
+    end
+
+    it "cannot creat a new order_item with a non integer qty" do
+      order_item4.qty = 0
+      
+      expect(order_item4.valid?).must_equal false
+      expect(order_item4.errors.messages).must_include :qty
     end
 
   end
@@ -60,11 +63,11 @@ describe OrderItem do
       order = OrderItem.display_items(cart)
 
 
-      order.must_be_instance_of Hash 
-      order.length.must_equal 2 
+      expect(order).must_be_instance_of Hash 
+      expect(order.length).must_equal 2 
 
       order.each do |key, val|
-        key.must_be_instance_of Product 
+        expect(key).must_be_instance_of Product 
       end 
     end 
 
@@ -76,7 +79,7 @@ describe OrderItem do
 
       cart = [item1, item2]
       updated_cart = OrderItem.remove_from_cart(cart, product1.id)
-      updated_cart.length.must_equal 1
+      expect(updated_cart.length).must_equal 1
     end 
   end 
 

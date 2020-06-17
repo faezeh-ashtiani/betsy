@@ -114,6 +114,13 @@ describe Product do
       expect(product4.errors.messages).must_include :price
     end
 
+    it "cannot creat a new order_item with a negative or zero price" do
+      product4.price = 0
+      
+      expect(product4.valid?).must_equal false
+      expect(product4.errors.messages).must_include :price
+    end
+
     it "is invalid without a qty" do
       product4.qty = nil
       
