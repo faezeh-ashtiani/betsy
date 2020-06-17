@@ -35,6 +35,8 @@ class Merchant < ApplicationRecord
     orders = order_ids.map{ |order_id|
       Order.find_by(id: order_id)
     }
+
+    return orders
   end 
 
   def get_orders_by_status(status)
