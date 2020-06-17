@@ -1,10 +1,8 @@
 class MerchantsController < ApplicationController
   
-  def show
-    @merchant = Merchant.find_by(id: params[:id])
-
-    if @merchant.nil?
-      flash[:error] = "Must be logged in as that merchant to view their dashboard"
+  def dashboard
+    if @current_merchant.nil?
+      flash[:error] = "Must be logged in to view Merchant dashboard"
       redirect_to root_path
       return
     end

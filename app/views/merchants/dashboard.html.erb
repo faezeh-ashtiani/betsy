@@ -1,11 +1,11 @@
-<h2> <%= "#{@merchant.username.upcase}"%> Dashboard </h2>
+<h2> <%= "#{@current_merchant.username.upcase}"%> Dashboard </h2>
 
-<p>Joined site <%= @merchant.created_at.strftime("%B %e, %Y") %></p>
+<p>Joined site <%= @current_merchant.created_at.strftime("%B %e, %Y") %></p>
 
-<h3> <%= @merchant.username %>'s Products </h3>
+<h3> <%= @current_merchant.username %>'s Products </h3>
 <%= link_to "ADD NEW PRODUCT", new_product_path, class: "nav-link" %>
 
-<% @merchant.products.each do |product| %>
+<% @current_merchant.products.each do |product| %>
   <section class="product_square">
 
     <%= image_tag product.img_url, alt: product.description %>
