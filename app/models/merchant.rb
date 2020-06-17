@@ -22,4 +22,41 @@ class Merchant < ApplicationRecord
     return merchant
   end
 
+
+  def get_all_orders
+    order_ids = []
+
+    self.products.each do |product|   
+      product.order_items.each do |item|
+        order_ids << item.order_id
+      end
+    end
+
+    orders = order_ids.map{ |order_id|
+      Order.find_by(id: order_id)
+    }
+  end 
+
+  def get_orders_by_status(status)
+    all_orders = self.get_all_orders
+   
+    return all_orders.select {|order| order.status == status}
+  end
+
+  def find_my_order_items(order)
+    all_order_items = []
+
+    order.order_items.each do |item|
+      all_order_items << OrderItem.find_by(id: item.id)
+    end 
+
+    return all_order_items.select {|item| item.product.merchant_id == self.id}
+  end 
+
+  # calculate revenue of all orders with status "complete"
+
+  # calculate revenue of all orders with status "paid"
+
+  # total revenue 
+
 end
