@@ -9,11 +9,13 @@ class MerchantsController < ApplicationController
 
     # create instance variables of the current merchant to be displayed 
     @paid_orders = @current_merchant.get_orders_by_status("paid")
-    @completed_orders = @current_merchant.get_orders_by_status("complete")
+    @paid_orders_revenue = @current_merchant.revenue(@paid_orders)
 
-    # @paid_orders_revenue = 
-    # @completed_orders_revenue = 
-    # @total_revenue = 
+    @completed_orders = @current_merchant.get_orders_by_status("complete")
+    @completed_orders_revenue = @current_merchant.revenue(@completed_orders)
+
+    @all_orders = @current_merchant.get_all_orders
+    @total_revenue = @current_merchant.revenue(@all_orders)
   end 
 
   def create
