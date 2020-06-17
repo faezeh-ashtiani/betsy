@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :products do
     resources :reviews, only: [:create]
   end
-  resources :orders, only: [:new, :create, :show]
+  resources :orders, only: [:new, :create, :show, :update]
   
   resources :categories
   
@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get 'guest/cart', to: 'order_item#cart', as: 'cart'
   post 'products/:id/add-to-cart', to: 'order_item#add_to_cart', as: 'add_to_cart'  
   post 'guest/cart/remove', to: 'order_item#remove_from_cart', as: 'remove_from_cart'
+  
 
 
 end

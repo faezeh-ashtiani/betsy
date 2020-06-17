@@ -54,12 +54,9 @@ describe Product do
     end
     
     describe "order relations" do
-      it "has many orders thrugh oreder_items" do
-        expect(product).must_respond_to :orders
-        expect(product.orders.length).must_equal 2
-        product.orders.each do |order|
-          expect(order).must_be_instance_of Order
-        end
+      it "has many orders thrugh order_items" do
+        expect(product).must_respond_to :order_items
+        expect(product.order_items.length).must_equal 2
       end
     end
 
