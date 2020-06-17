@@ -34,7 +34,6 @@ class OrdersController < ApplicationController
       flash[:error] = "Contact merchant, something went wrong :("
       return redirect_to root_path 
     end 
-
     if order.update(status: "canceled") && Order.restock_canceled_items(order)
       flash[:status] = "Order successfully canceled!"
       return redirect_to root_path

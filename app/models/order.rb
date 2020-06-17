@@ -12,9 +12,8 @@ class Order < ApplicationRecord
     order_items.each do |prod, val|
       total += (prod.price * val)
     end 
-    return total + (total*(0.1))
+    return total + (total * (0.1))
   end 
-
 
   def self.restock_canceled_items(order)
     order.order_items.each do |item|
