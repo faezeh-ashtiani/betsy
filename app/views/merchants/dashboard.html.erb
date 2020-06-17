@@ -1,21 +1,24 @@
-<h2> <%= "#{@current_merchant.username.upcase}"%> Dashboard </h2>
+<section class="all-products">
+  <div class='products-header'>
+    <h2 > <%= "#{@current_merchant.username.upcase}"%> Dashboard </h2>
+    <p>Joined site on <%= @current_merchant.created_at.strftime("%B %e, %Y") %></p>
+    <%= link_to "ADD NEW PRODUCT", new_product_path, class: "nav-link" %>
+  </div>
+   
+  <main class='product-index'>
+    <% @current_merchant.products.each do |product| %>
+      <section class="product_square">
 
-<p>Joined site <%= @current_merchant.created_at.strftime("%B %e, %Y") %></p>
-
-<h3> Your Products </h3>
-<%= link_to "ADD NEW PRODUCT", new_product_path, class: "nav-link" %>
-
-<% @current_merchant.products.each do |product| %>
-  <section class="product_square">
-
-    <%= image_tag product.img_url, alt: product.description %>
-    <h4><%= link_to product.name.upcase, product_path(product.id) %></h4>
-    <h5><%= product.description %></h5>
-    <h6>$<%= sprintf('%.2f', product.price) %></h6>
-    <h6><%= link_to "EDIT PRODUCT", edit_product_path(product.id) %></h6>
-    <h6><%= link_to "DELETE PRODUCT", product_path(product.id), method: :delete %></h6>
-  </section>
-<% end %>
+        <%= image_tag product.img_url, alt: product.description %>
+        <h4><%= link_to product.name.upcase, product_path(product.id) %></h4>
+        <h5><%= product.description %></h5>
+        <h6>$<%= sprintf('%.2f', product.price) %></h6>
+        <h6><%= link_to "EDIT PRODUCT", edit_product_path(product.id) %></h6>
+        <h6><%= link_to "DELETE PRODUCT", product_path(product.id), method: :delete %></h6>
+      </section>
+    <% end %>
+  </main>
+</section>
 
 <h3> Your Revenue Report </h3>
 
