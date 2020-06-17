@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   
   resources :merchants
 
+  get 'merchant/dashboard', to: 'merchants#dashboard', as: 'merchant_dashboard'
+
   resources :products do
     resources :reviews, only: [:create]
   end
