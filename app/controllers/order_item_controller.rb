@@ -12,12 +12,13 @@ class OrderItemController < ApplicationController
     end 
 
     if session[:order_items]
-
-      order_item = session[:order_items].find { |order_item| order_item["product_id"] == params[:id] }
+      order_item = session[:order_items].find { |order_item| order_item["product_id"] == params[:id].to_i }
+   
       if !order_item
         session[:order_items] << OrderItem.create!(qty: (params[:post][:qty]).to_i, product_id: params[:id])
       else
         order_item.update(qty: (params[:post][:qty]).to_i) 
+      
       end
     else
       session[:order_items] = []
