@@ -22,43 +22,42 @@ class Merchant < ApplicationRecord
     return merchant
   end
 
-  def get_all_orders
-<<<<<<< HEAD
-    order_ids = []
+  # def get_all_orders
+  #   order_ids = []
 
-    self.products.each do |product|   
-      product.order_items.each do |item|
-        order_ids << item.order_id
-      end
-    end
+  #   self.products.each do |product|   
+  #     product.order_items.each do |item|
+  #       order_ids << item.order_id
+  #     end
+  #   end
     
-    # returns array of all orders with a product in it that is owned by this merchant 
-    orders = order_ids.uniq.map{ |order_id|
-      Order.find_by(id: order_id)
-    }
+  #   # returns array of all orders with a product in it that is owned by this merchant 
+  #   orders = order_ids.uniq.map{ |order_id|
+  #     Order.find_by(id: order_id)
+  #   }
 
-    return orders
-  end 
+  #   return orders
+  # end 
 
-  def get_orders_by_status(status)
-    all_orders = self.get_all_orders
-    if all_orders.length == 0
-      return []
-    else
-      # returns orders only with specified status 
-      all_orders.select { |order| order.status == status }
-    end
-  end
+  # def get_orders_by_status(status)
+  #   all_orders = self.get_all_orders
+  #   if all_orders.length == 0
+  #     return []
+  #   else
+  #     # returns orders only with specified status 
+  #     all_orders.select { |order| order.status == status }
+  #   end
+  # end
 
-  def find_my_order_items(order)
-    all_order_items = []
+  # def find_my_order_items(order)
+  #   all_order_items = []
 
-    order.order_items.each do |item|
-      all_order_items << OrderItem.find_by(id: item.id)
-    end 
+  #   order.order_items.each do |item|
+  #     all_order_items << OrderItem.find_by(id: item.id)
+  #   end 
 
-    return all_order_items.select { |item| item.product.merchant_id == self.id }
-  end 
+  #   return all_order_items.select { |item| item.product.merchant_id == self.id }
+  # end 
 
   def earnings_per_order(order)
     my_order_items = self.find_my_order_items(order)
@@ -73,8 +72,7 @@ class Merchant < ApplicationRecord
     return total_earnings.round(2)
   end
 
-  def total_revenue(orders)
-=======
+  def get_all_orders
     Order.joins(order_items: :product).where(products: { merchant_id: id }).distinct
   end 
 
@@ -88,8 +86,7 @@ class Merchant < ApplicationRecord
 
   
 
-  def revenue(orders)
->>>>>>> c3741a0899d96b21b7ca062cc60fc2586acaf4cf
+  def total_revenue(orders)
     my_order_items = []
     total_order_items = []
     total_revenue = 0.00

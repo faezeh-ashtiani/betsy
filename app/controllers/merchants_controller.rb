@@ -7,26 +7,15 @@ class MerchantsController < ApplicationController
       return
     end
 
-<<<<<<< HEAD
-    @paid_orders = @current_merchant.get_orders_by_status("paid")
+    # create instance variables of the current merchant to be displayed 
+    @paid_orders = @current_merchant.get_orders_by_status(:paid)
     @paid_orders_revenue = @current_merchant.total_revenue(@paid_orders)
 
-    @completed_orders = @current_merchant.get_orders_by_status("complete")
+    @completed_orders = @current_merchant.get_orders_by_status(:complete)
     @completed_orders_revenue = @current_merchant.total_revenue(@completed_orders)
 
     @all_orders = @current_merchant.get_all_orders
     @total_revenue = @current_merchant.total_revenue(@all_orders)
-=======
-    # create instance variables of the current merchant to be displayed 
-    @paid_orders = @current_merchant.get_orders_by_status(:paid)
-    @paid_orders_revenue = @current_merchant.revenue(@paid_orders)
-
-    @completed_orders = @current_merchant.get_orders_by_status(:complete)
-    @completed_orders_revenue = @current_merchant.revenue(@completed_orders)
-
-    @all_orders = @current_merchant.get_all_orders
-    @total_revenue = @current_merchant.revenue(@all_orders)
->>>>>>> c3741a0899d96b21b7ca062cc60fc2586acaf4cf
   end 
 
   def create
