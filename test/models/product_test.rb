@@ -134,7 +134,7 @@ describe Product do
 
   end
 
-  describe "custome methods" do
+  describe "average rating" do
     
     describe "average rating" do
       it "can calculate the average rating for a product with many ratings" do
@@ -148,4 +148,36 @@ describe Product do
 
   end
 
+  describe "available?" do 
+    it "return true if product has available stock" do # inspired by "can't add a product without enough stock
+      product1 = products(:product1)
+      available_qty = Product.available?(product1.id, 1)
+      expect(available_qty).must_equal true
+    end
+
+    it "return false if product does not have available stock" do # inspired by "can't add a product wihtout enough stock
+      product1 = products(:product1)
+      available_qty = Product.available?(product1.id, 11)
+      expect(available_qty).must_equal  false
+    end
+  end
+
+
+  describe "update_quantity" do 
+    it "correctly subtracts quantity" do 
+      product1 = products(:product1)
+      Product.update_quantity(product1.id, 2)
+      product1.reload
+      expect(product1.qty).must_equal  8
+    end
+
+    it "correctly subtracts all available items" do 
+      product1 = products(:product1)
+      Product.update_quantity(product1.id, 10)
+      product1.reload
+      expect(product1.qty).must_equal  0
+    end
+
+   
+  end
 end

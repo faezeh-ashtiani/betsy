@@ -53,22 +53,7 @@ describe OrderItem do
 
   end
 
-  describe "cart" do 
-    it "can add a product to card" do
-
-    end
-
-    it "can't add a product wihtout enough stock" do
-      
-    end
-
-    it "can't add a retired product" do
-      
-    end
-
-    it "can't add to an order that is not in cart mode" do
-      
-    end
+  describe "cart" do  
 
     it "returns a hash for product and quantity from session" do 
       product1 = products(:product1)
@@ -98,6 +83,4 @@ describe OrderItem do
       expect(updated_cart.length).must_equal 1
     end 
   end 
-
-  
 end

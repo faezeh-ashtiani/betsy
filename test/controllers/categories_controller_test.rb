@@ -1,7 +1,5 @@
 require "test_helper"
 
-
-
 describe CategoriesController do
   
   describe "Guest users" do

@@ -22,6 +22,15 @@ class Merchant < ApplicationRecord
     return merchant
   end
 
+  def get_all_orders
+    order_ids = []
+
+    self.products.each do |product|   
+      product.order_items.each do |item|
+        order_ids << item.order_id
+      end
+    end
+  end
   # def get_all_orders
   #   order_ids = []
 
