@@ -10,7 +10,7 @@ class Order < ApplicationRecord
   def self.order_total(order_items) 
     total = 0.0
     order_items.each do |prod, val|
-      total += (prod.price * val)
+      total += (prod.price * val.to_i)
     end 
     return total + (total * (0.1))
   end 
@@ -30,7 +30,7 @@ class Order < ApplicationRecord
     total = 0.0
     order.order_items.each do |item| 
       product = Product.find_by(id: item.product_id)
-      total += (product.price * item.qty)
+      total += (product.price * item.qty.to_i)
     end 
     return total + (total * (0.1))
   end   
