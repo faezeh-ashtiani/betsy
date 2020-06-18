@@ -15,7 +15,7 @@
         <% @reviews.each do |review| %>
           <li>
             <strong>
-              <%= review.created_at.strftime("%B %e, %Y") %> - Rating: <%= review.rating %>
+              <%= format_datetime(review.created_at) %> - Rating: <%= review.rating %>
             </strong>
           </li>
           <ul class="review-item"><li><%= review.description %></li></ul>

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   
   resources :merchants, only: [:create]
   get 'merchant/dashboard', to: 'merchants#dashboard', as: 'merchant_dashboard'
+  post 'merchant/dashboard', to: 'merchants#dashboard'
 
   resources :products do
     resources :reviews, only: [:create]
