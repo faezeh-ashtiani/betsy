@@ -25,4 +25,14 @@ class Order < ApplicationRecord
     return true
   end 
 
+  def self.total(order_id) 
+    order = Order.find_by(id: order_id)
+    total = 0.0
+    order.order_items.each do |item| 
+      product = Product.find_by(id: item.product_id)
+      total += (product.price * item.qty)
+    end 
+    return total + (total * (0.1))
+  end   
+
 end
