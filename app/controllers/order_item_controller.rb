@@ -1,7 +1,7 @@
 class OrderItemController < ApplicationController
 
   def add_to_cart  
-    if ((params[:post][:qty]).to_i)< 1 
+    if ((params[:post][:qty]).to_i) < 1 
       flash[:error] = "Before adding to cart please specify a quantity"
       return redirect_to root_path
     end

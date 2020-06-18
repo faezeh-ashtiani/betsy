@@ -23,42 +23,18 @@ class Merchant < ApplicationRecord
   end
 
   def get_all_orders
-    order_ids = []
-
-    self.products.each do |product|   
-      product.order_items.each do |item|
-        p item
-        order_ids << item.order_id
-      end
-    end
-    
-    # returns array of all orders with a product in it that is owned by this merchant 
-    orders = order_ids.uniq.map{ |order_id|
-      Order.find_by(id: order_id)
-    }
-
-    return orders
+    Order.joins(order_items: :product).where(products: { merchant_id: id }).distinct
   end 
 
   def get_orders_by_status(status)
-    all_orders = self.get_all_orders
-    if all_orders.nil?
-      return
-    else
-    # returns orders only with specified status 
-      all_orders.select { |order| order.status == status }
-    end
+    self.get_all_orders.where(orders: {status: status })
   end
 
   def find_my_order_items(order)
-    all_order_items = []
-
-    order.order_items.each do |item|
-      all_order_items << OrderItem.find_by(id: item.id)
-    end 
-
-    return all_order_items.select {|item| item.product.merchant_id == self.id}
+    OrderItem.joins(:product).where(products: { merchant_id: self.id }, order_items: {order_id: order.id })
   end 
+
+  
 
   def revenue(orders)
     my_order_items = []

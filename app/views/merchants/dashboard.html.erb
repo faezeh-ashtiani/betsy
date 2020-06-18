@@ -12,7 +12,7 @@
       <section class="merch-product_square">
         <%= image_tag product.img_url, alt: product.description %>
         <h4><%= link_to product.name.upcase, product_path(product.id) %></h4>
-        <h6>$<%= sprintf('%.2f', product.price) %></h6>
+        <h6><%= format_currency(product.price) %></h6>
         <h6><%= link_to "EDIT PRODUCT", edit_product_path(product.id) %></h6>
         <h6><%= link_to "DELETE PRODUCT", product_path(product.id), method: :delete %></h6>
       </section>
@@ -21,19 +21,27 @@
 
   <div class="fulfilment-report">
     <h3> Your Revenue Report </h3>
-    <%= @all_orders %>
 
     <h4> Total Revenue: </h4>
+    <%= format_currency(@total_revenue) %>
 
     <h4> Total Revenue (paid orders): </h4>
+    <%= format_currency(@paid_orders_revenue) %>
 
     <h4> Total Revenue (complete orders): </h4>
+    <%= format_currency(@completed_orders_revenue) %>
 
     <h3> Your Orders </h3>
+    <%= render_merchant_orders(@current_merchant, @all_orders) %>
+    
 
     <h4> Paid Orders: </h4>
+    <%= render_merchant_orders(@current_merchant, @paid_orders) %>
+    
 
     <h4> Completed Orders: </h4>
+    <%= render_merchant_orders(@current_merchant, @completed_orders)  %>
+    
   </div>
 </section>
 
