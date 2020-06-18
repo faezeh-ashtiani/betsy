@@ -11,24 +11,20 @@ class OrderItemController < ApplicationController
       return redirect_to root_path
     end 
 
-    if session[:order_items] 
-      foundCartEntry = false
-      session[:order_items].each do |order_item|
-       
-        if order_item.key(params[:id])
-          foundCartEntry = true 
-        end
-      end
+    if session[:order_items]
 
-      if !foundCartEntry
+      order_item = session[:order_items].find { |order_item| order_item["product_id"] == params[:id] }
+      if !order_item
         session[:order_items] << OrderItem.create!(qty: (params[:post][:qty]).to_i, product_id: params[:id])
-        flash[:status] = "Added to Cart!"
+
+      else
+        order_item.update(qty: (params[:post][:qty]).to_i) 
       end
     else
       session[:order_items] = []
       session[:order_items] << OrderItem.create!(qty: params[:post][:qty], product_id: params[:id])
-      flash[:status] = "Added to Cart!"
     end 
+    flash[:status] = "Added to Cart!"
     redirect_to product_path(params[:id])
   end 
 

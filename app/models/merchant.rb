@@ -27,6 +27,7 @@ class Merchant < ApplicationRecord
 
     self.products.each do |product|   
       product.order_items.each do |item|
+        p item
         order_ids << item.order_id
       end
     end
@@ -41,9 +42,12 @@ class Merchant < ApplicationRecord
 
   def get_orders_by_status(status)
     all_orders = self.get_all_orders
-   
+    if all_orders.nil?
+      return
+    else
     # returns orders only with specified status 
-    return all_orders.select {|order| order.status == status}
+      all_orders.select { |order| order.status == status }
+    end
   end
 
   def find_my_order_items(order)

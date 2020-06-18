@@ -16,6 +16,7 @@ class OrderItem < ApplicationRecord
     end 
 
     def self.remove_from_cart(session, product_id)
+      # OrderItem.find_by(product_id: params["format"])
       updated_cart =  []
       session.each do |item|
         if product_id.to_i != item["product_id"].to_i
