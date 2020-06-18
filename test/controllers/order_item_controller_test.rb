@@ -79,7 +79,7 @@ describe OrderItemController do
     end 
 
     it "adding more to product already in cart" do  #Product already in cart (should update quantity)
-      product1 = products(:product1)                # ask Quinn fo help
+      product1 = products(:product1)                
       par1 = {
         id: 1, 
         post: { qty: 1 }
@@ -95,27 +95,12 @@ describe OrderItemController do
  
       session[:order_items].each do |item|
         if item["product_id"] == product1.id
-          expect(item["qty"]).must_equal 3
+          expect(item["qty"].to_i).must_equal 2
         
         end
       end   
     end 
-
-#     it "adding a destroyed/retired product" do  #Product already in cart (should update quantity)
-#       product1 = products(:product1) #I dont think we need this because you cant get to the page you cant put yourself in the scnario of adding a product to cart
-#       par1 = {                        
-#         id: 1, 
-#         post: { qty: 1 }
-#       }
-#       product1.destroy
-#       post add_to_cart_path(product1.id), params: par1 
-# # binding.pry
-#       expect(session[:order_items]).must_equal nil
-#       must_redirect_to root_path
-        
-        
-#     end 
-   end 
+  end 
 
 
   describe "remove from cart" do 

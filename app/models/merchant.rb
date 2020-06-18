@@ -30,6 +30,7 @@ class Merchant < ApplicationRecord
         order_ids << item.order_id
       end
     end
+  end
   # def get_all_orders
   #   order_ids = []
 
@@ -80,11 +81,7 @@ class Merchant < ApplicationRecord
     return total_earnings.round(2)
   end
 
-<<<<<<< HEAD
-  def total_revenue(orders)
-=======
   def get_all_orders
->>>>>>> master
     Order.joins(order_items: :product).where(products: { merchant_id: id }).distinct
   end 
 
@@ -98,11 +95,7 @@ class Merchant < ApplicationRecord
 
   
 
-<<<<<<< HEAD
-  def revenue(orders)
-=======
   def total_revenue(orders)
->>>>>>> master
     my_order_items = []
     total_order_items = []
     total_revenue = 0.00
