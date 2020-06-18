@@ -1,11 +1,13 @@
 class OrderItem < ApplicationRecord
   belongs_to :product
+  belongs_to :order, optional: true
   validates :qty, presence: true, numericality: { only_integer: true, greater_than: 0 }
   
   def self.display_items(order_items)  
     unique_items = {}
     order_items.each do |item|
       product = Product.find_by(id: item["product_id"])
+      # TODO: what are we doing here? the conditional is identical (Q from Faezeh)
       if unique_items[product] 
         unique_items[product] = item["qty"]
       else
@@ -27,12 +29,11 @@ class OrderItem < ApplicationRecord
 
   def self.current_edit(product_id, session) 
     session.each do |item|
-      puts item
       if item["product_id"] == product_id 
-    
         return item["qty"].to_s
       end 
     end 
+    return "0"
   end 
      
 end

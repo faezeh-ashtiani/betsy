@@ -107,4 +107,23 @@ describe Merchant do
     end
 
   end
+
+  describe "create_merchant_from_github" do 
+  end 
+
+  describe "get_all_orders" do 
+  end 
+
+  describe "get_orders_by_status" do 
+  end 
+
+  describe "find_my_order_items" do 
+  end 
+
+  describe "earnings_per_order" do 
+  end 
+
+  describe "total_revenue" do 
+  end 
+  
 end
