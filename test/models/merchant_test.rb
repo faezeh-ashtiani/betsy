@@ -108,22 +108,63 @@ describe Merchant do
 
   end
 
-  describe "create_merchant_from_github" do 
-  end 
+  describe "merchant model methods" do
+    describe "create_merchant_from_github" do 
+      it "creates a valid merchant with a valid auth hash" do 
+      end 
 
-  describe "get_all_orders" do 
-  end 
-
-  describe "get_orders_by_status" do 
-  end 
-
-  describe "find_my_order_items" do 
-  end 
-
-  describe "earnings_per_order" do 
-  end 
-
-  describe "total_revenue" do 
-  end 
+      it "creates a valid merchant even if auth hash doesn't provide access to name" do 
+      end 
+    end 
   
+    describe "get_all_orders" do 
+      it "returns an array of all orders that include at least one of the merchant's product" do 
+      end 
+
+      it "returns an array that does not contain duplicate orders" do 
+      end 
+
+      it "returns an array that does not include an order that does not include at least one of it's products" do
+      end
+
+      it "returns an empty array when a merchant has 0 products" do 
+      end 
+    end 
+  
+    describe "get_orders_by_status" do 
+      it "returns an array of orders only with the specified status" do 
+      end 
+
+      it "returns an empty array when a merchant has 0 products with specified status" do 
+      end 
+    end 
+  
+    describe "find_my_order_items" do 
+      it "returns an array of order items from an order that is associated with merchant" do
+      end 
+
+      it "does not return any order items that are not associated with merchant" do 
+      end 
+
+      it "returns an empty array if none of the merchant's products are in the order" do 
+      end 
+
+    end 
+  
+    describe "earnings_per_order" do 
+      it "returns the earnings a merchant made on a given order" do 
+      end 
+
+      it "returns 0.00 if there are no merchant products in the order" do 
+      end 
+    end 
+  
+    describe "total_revenue" do 
+      it "returns total revenue of a merchant from a collection of orders" do 
+      end 
+
+      it "returns 0.00 if there are no orders associated with merchant" do 
+      end 
+    end 
+  end
 end
