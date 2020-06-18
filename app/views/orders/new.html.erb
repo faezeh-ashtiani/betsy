@@ -3,20 +3,18 @@
 
 <div class="form"> 
     <%= form_with model: @order do |f| %>
-
       <div class="form-group">
-      <%= f.label "FULL NAME:" %>
-      <%= f.text_field :name %>
+        <%= f.label "FULL NAME:" %>
+        <%= f.text_field :name %>
       </div>
       <div class="form-group">
-    
-      <%= f.label "CREDIT CARD NUMBER:" %>
-      <%= f.text_field :credit_card %>
+        <%= f.label "CREDIT CARD NUMBER:" %>
+        <%= f.text_field :credit_card %>
       </div>
       <div class="form-group">
-      <%= f.label "ADDRESS:" %>
-      <%= f.text_field :street_address %>
-    </div>
+        <%= f.label "ADDRESS:" %>
+        <%= f.text_field :street_address %>
+      </div>
       <div class="form-group">
         <%= f.label "CITY/STATE/ZIP:" %>
         <%= f.text_field :city_state_zip %>
