@@ -76,5 +76,4 @@ describe MerchantsController do
       must_respond_with :success
     end
   end
-
 end

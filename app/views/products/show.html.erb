@@ -27,7 +27,6 @@
   <section>
     <p> Left in Stock: <%= @product.qty %> </p> 
     <%if !session[:order_items].nil? %>
-     
       <% current_in_cart = OrderItem.current_edit(@product.id, session[:order_items]) %>
     <% else %>
       <%current_in_cart = " " %>
@@ -39,13 +38,12 @@
             <%= f.label "Quantity:"%>
             <%= f.text_field :qty, placeholder: current_in_cart %>
           </div>
-            <% if current_in_cart.to_i > 0 %>
-              <%= f.submit "Update Cart", class:'button-style' %>
-            <% else%>
-              <%= f.submit "Add to Cart", class:'button-style' %>
-            <% end %>
-
+          <% if current_in_cart.to_i > 0 %>
+            <%= f.submit "Update Cart", class:'button-style' %>
+          <% else%>
+            <%= f.submit "Add to Cart", class:'button-style' %>
           <% end %>
+        <% end %>
     </div> 
   </section>
 <div>   
