@@ -25,7 +25,6 @@ describe OrdersController do
   it "will not update order status if order is not found" do 
     patch order_path(-1) 
     must_redirect_to root_path
-
   end 
 
 end
