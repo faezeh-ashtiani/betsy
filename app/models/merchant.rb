@@ -23,7 +23,6 @@ class Merchant < ApplicationRecord
   end
 
   def get_all_orders
-<<<<<<< HEAD
     order_ids = []
 
     self.products.each do |product|   
@@ -74,7 +73,6 @@ class Merchant < ApplicationRecord
   end
 
   def total_revenue(orders)
-=======
     Order.joins(order_items: :product).where(products: { merchant_id: id }).distinct
   end 
 
@@ -89,7 +87,6 @@ class Merchant < ApplicationRecord
   
 
   def revenue(orders)
->>>>>>> c3741a0899d96b21b7ca062cc60fc2586acaf4cf
     my_order_items = []
     total_order_items = []
     total_revenue = 0.00

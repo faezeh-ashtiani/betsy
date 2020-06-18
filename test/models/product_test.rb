@@ -166,7 +166,7 @@ describe Product do
   describe "update_quantity" do 
     it "correctly subtracts quantity" do 
       product1 = products(:product1)
-      product.update_attribute(product1.id, 2)
+      Product.update_quantity(product1.id, 2)
       expect(product.qty).must_equal  8
     end
 
