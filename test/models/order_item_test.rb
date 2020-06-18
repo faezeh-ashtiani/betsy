@@ -53,22 +53,7 @@ describe OrderItem do
 
   end
 
-  describe "cart" do 
-    it "can add a product to card" do
-
-    end
-
-    it "can't add a product wihtout enough stock" do
-      
-    end
-
-    it "can't add a retired product" do
-      
-    end
-
-    it "can't add to an order that is not in cart mode" do
-      
-    end
+  describe "cart" do  #TODO ask what cart is? Does this go here?
 
     it "returns a hash for product and quantity from session" do 
       product1 = products(:product1)
@@ -99,5 +84,22 @@ describe OrderItem do
     end 
   end 
 
+  # it "can add a product to cart" do # i think this is covered in product controller test create
+  #   skip
+  # end
+
+  
+  # it "can't add a product wihtout enough stock"# i think this is covered in product model test  under available?
+    
+  # end
+
+    
+  # it "can't add a retired product" do
+    
+  # end
+
+  # it "can't add to an order that is not in cart mode" do
+    
+  # end
   
 end

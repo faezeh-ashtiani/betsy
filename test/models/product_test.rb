@@ -148,4 +148,28 @@ describe Product do
 
   end
 
+  describe "available?" do 
+    it "return true if product has available stock" do # inspired by "can't add a product wihtout enough stock
+      product1 = products(:product1)
+      available_qty = product1.available?(product1.id, 11)
+      expect(available_qty).must_equal true
+    end
+
+    it "return false if product does not have available stock" do # inspired by "can't add a product wihtout enough stock
+      product1 = products(:product1)
+      available_qty = product1.available?(product1.id, 11)
+      expect(available_qty).must_equal  false
+    end
+  end
+
+
+  describe "update_quantity" do 
+    it "correctly subtracts quantity" do 
+      product1 = products(:product1)
+      product.update_attribute(product1.id, 2)
+      expect(product.qty).must_equal  8
+    end
+
+   
+  end
 end
