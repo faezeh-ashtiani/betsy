@@ -15,7 +15,11 @@
   <h1 class='main-header'><%= link_to "FOREVER 2020", root_path %></h1>
   
   <nav class="dropdown">
-    <li class="navbar-item"><%= link_to "CART", cart_path, class: "nav-link" %> </li> 
+      <% if !@current_merchant %>
+          <li class="navbar-item"><%= link_to "LOGIN / SIGN UP", github_login_path, class: "nav-link" %> </li> 
+        <%else %>
+          <li class="navbar-item"><%= link_to "LOGGED IN AS #{@current_merchant.username}", merchant_dashboard_path, class: "nav-link" %> </li> 
+      <% end %>
     <li class="navbar-item dropdown-toggle main-drop" type="button" data-toggle="dropdown">PRODUCTS<span class="caret"></span></li>
       <ul class="dropdown-menu">
         <li class="dropdown-submenu">
@@ -35,13 +39,11 @@
           </ul>
         </li>
       </ul>
-        <% if @current_merchant %>
-          <li class="navbar-item"><%= link_to "NEW PRODUCT", new_product_path, class: "nav-link" %> </li> 
-          <li class="navbar-item"><%= link_to "LOGOUT", logout_path, method: :delete, class: "nav-link" %> </li> 
-          <li class="navbar-item"><%= link_to "LOGGED IN AS #{@current_merchant.username}", merchant_dashboard_path, class: "nav-link" %> </li> 
-        <% else %>
-          <li class="navbar-item"><%= link_to "LOGIN / SIGN UP", github_login_path, class: "nav-link" %> </li> 
-        <%end %>
+      <li class="navbar-item"><%= link_to "CART", cart_path, class: "nav-link" %> </li> 
+      <% if @current_merchant%>
+        <li class="navbar-item"><%= link_to "NEW PRODUCT", new_product_path, class: "nav-link" %> </li> 
+        <li class="navbar-item"><%= link_to "LOGOUT", logout_path, method: :delete, class: "nav-link" %> </li> 
+      <%end %>
   </nav>
 
 

@@ -39,7 +39,7 @@
             <%= f.label "Quantity:"%>
             <%= f.text_field :qty, placeholder: current_in_cart %>
           </div>
-            <% if current_in_cart != 0 %>
+            <% if current_in_cart.to_i > 0 %>
               <%= f.submit "Update Cart", class:'button-style' %>
             <% else%>
               <%= f.submit "Add to Cart", class:'button-style' %>
