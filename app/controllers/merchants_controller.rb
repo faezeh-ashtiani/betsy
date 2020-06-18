@@ -16,9 +16,13 @@ class MerchantsController < ApplicationController
       @orders = @current_merchant.get_orders_by_status(@status)
     end 
     
-    @paid_orders_revenue = @current_merchant.total_revenue(@paid_orders)
-    @completed_orders_revenue = @current_merchant.total_revenue(@completed_orders)
-    @total_revenue = @current_merchant.total_revenue(@all_orders)
+    all_orders = @current_merchant.get_all_orders
+    paid_orders = @current_merchant.get_orders_by_status("paid")
+    completed_orders = @current_merchant.get_orders_by_status("complete")
+
+    @paid_orders_revenue = @current_merchant.total_revenue(paid_orders)
+    @completed_orders_revenue = @current_merchant.total_revenue(completed_orders)
+    @total_revenue = @current_merchant.total_revenue(all_orders)
   end 
 
   def create
