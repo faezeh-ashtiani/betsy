@@ -51,22 +51,26 @@ class ProductsController < ApplicationController
     if @product.nil?
       head :not_found
       return
+    elsif @product.merchant_id != session[:user_id]
+      flash[:error] = "A problem occurred: A Merchant can not another merchant's product"
+      redirect_to root_path
     end
-
   end 
 
   def update
     if @product.nil?
       head :not_found
       return
-    elsif @product.update(new_product_params)
-      flash[:success] = "Product updated successfully"
-      redirect_to product_path 
-      return
-    else # save failed :(
-      flash.now[:error] = "Something happened. Product not updated."
-      render :edit, status: :bad_request # show the form view again
-      return
+    else 
+      if @product.update(new_product_params)
+        flash[:success] = "Product updated successfully"
+        redirect_to product_path(@product.id) 
+        return
+      else # save failed :(
+        flash.now[:error] = "Something happened. Product not updated."
+        render :edit, status: :bad_request # show the form view again
+        return
+      end
     end
 
   end 

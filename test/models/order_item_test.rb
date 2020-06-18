@@ -54,6 +54,22 @@ describe OrderItem do
   end
 
   describe "cart" do 
+    it "can add a product to card" do
+
+    end
+
+    it "can't add a product wihtout enough stock" do
+      
+    end
+
+    it "can't add a retired product" do
+      
+    end
+
+    it "can't add to an order that is not in cart mode" do
+      
+    end
+
     it "returns a hash for product and quantity from session" do 
       product1 = products(:product1)
       product2 =  products(:product2)

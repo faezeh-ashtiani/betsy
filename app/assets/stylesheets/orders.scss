@@ -6,3 +6,19 @@
   margin: 5%;
   text-align: center;
 }
+
+.order-info {
+  width: 60%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-left: 20%;
+  margin-top: 2%;
+  margin-bottom: 1%;
+}
+
+.order-cards {
+  margin-left: 20%;
+  display: grid;
+  grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr ;
+}
+

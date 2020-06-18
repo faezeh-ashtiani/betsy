@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
   def create
     if @product
       if @product.merchant_id == session[:user_id]
-        flash[:warning] = "A problem occurred: A Merchant can not review their own product"
+        flash[:error] = "A problem occurred: A Merchant can not review their own product"
       else
         @review = Review.new(new_review_params)
         @review.product_id = @product.id
@@ -13,7 +13,7 @@ class ReviewsController < ApplicationController
         if @review.save
           flash[:success] = "Successful!"
         else
-          flash[:warning] = "A problem occurred: Could not review"
+          flash[:error] = "A problem occurred: Could not review"
         end
       end
       redirect_to request.referrer || product_path(@product.id)
