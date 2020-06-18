@@ -7,12 +7,7 @@ class OrderItem < ApplicationRecord
     unique_items = {}
     order_items.each do |item|
       product = Product.find_by(id: item["product_id"])
-      # TODO: what are we doing here? the conditional is identical (Q from Faezeh)
-      if unique_items[product] 
-        unique_items[product] = item["qty"]
-      else
-        unique_items[product] = item["qty"]
-      end
+      unique_items[product] = item["qty"]
     end 
     return unique_items 
   end 
