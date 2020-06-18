@@ -1,5 +1,3 @@
-
-
 <div class="all-products"> 
   <div class='products-header'>
     <h2><%= list_name %></h2>
@@ -11,7 +9,6 @@
       <section class="product_square">
         <%= image_tag product.img_url, alt: product.name, class: "product-image" %>
         <h4><%= link_to product.name, product_path(product.id), class: "product-name" %></h4>
-
         <h6>$<%= sprintf('%.2f', product.price) %></h6>
       </section>
     <% end %>
