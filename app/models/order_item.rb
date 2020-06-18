@@ -1,5 +1,6 @@
 class OrderItem < ApplicationRecord
   belongs_to :product
+  belongs_to :order, optional: true
   validates :qty, presence: true, numericality: { only_integer: true, greater_than: 0 }
   
   def self.display_items(order_items)  
@@ -27,12 +28,13 @@ class OrderItem < ApplicationRecord
 
   def self.current_edit(product_id, session) 
     session.each do |item|
-      puts item
+      # puts item
       if item["product_id"] == product_id 
     
         return item["qty"].to_s
       end 
     end 
+    "0"
   end 
      
 end

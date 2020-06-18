@@ -61,7 +61,7 @@ describe MerchantsController do
   
         expect(session[:user_id]).wont_be_nil
   
-        post logout_path, params: {}
+        delete logout_path, params: {}
   
         expect(session[:user_id]).must_be_nil
         must_redirect_to root_path
