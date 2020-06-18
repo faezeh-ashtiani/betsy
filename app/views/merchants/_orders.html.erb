@@ -1,0 +1,5 @@
+<% variable.each do |order|%>
+  <% merchant.find_my_order_items(order).each do |order_item| %>
+    <%= order_item.product.name %>
+  <% end %>
+<% end %>
