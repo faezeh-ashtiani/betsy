@@ -21,30 +21,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # def edit    #TODO I dont think edit and update functionality is needed here but saving current work just in case (i accidently thought i needed it)
-
-  #   if @category.nil?
-  #     head :not_found
-  #     return
-  #   end
-  # end 
-
-  # def update
-  #   if @category.nil?
-  #     head :not_found
-  #     return
-  #   elsif @category.update(new_category_params)
-  #     flash[:success] = "Category updated successfully"
-  #     redirect_to root_path 
-  #     return
-  #   else # save failed :(
-  #     flash.now[:error] = "Something happened. Category not updated."
-  #     render :edit, status: :bad_request # show the form view again
-  #     return
-  #   end
-
-  # end 
-
   private
 
   def category_params
