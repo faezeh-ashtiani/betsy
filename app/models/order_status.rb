@@ -1,6 +1,6 @@
 class OrderStatus
   def self.all 
-    return ["paid", "complete"]
+    return ["paid", "complete", "canceled"]
   end 
 
   def self.optional_all
