@@ -27,8 +27,9 @@ class Product < ApplicationRecord
 
   def self.update_quantity(product_id, qty)
     product = Product.find_by(id: product_id)
-    product.update_attribute(:qty, product.qty -= qty)
-    product.reload
+    
+    product.update!(qty: (product.qty -= qty.to_i))
+    
   end
 
 end

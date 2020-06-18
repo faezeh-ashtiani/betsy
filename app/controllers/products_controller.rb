@@ -30,10 +30,7 @@ class ProductsController < ApplicationController
     if @product.img_url == ""
       @product.img_url = "https://live.staticflickr.com/65535/50015899763_886c9985f5_m.jpg"
     end
-
-    # if session[:user_id] == nil  #TODO double chekc that this is not needed
-    #   redirect_to root_path 
-    # end
+    
     @product.merchant_id = session[:user_id]
 
     if @product.save
