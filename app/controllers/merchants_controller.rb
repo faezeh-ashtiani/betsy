@@ -7,14 +7,17 @@ class MerchantsController < ApplicationController
       return
     end
 
+    @status = status_param
+
     # create instance variables of the current merchant to be displayed 
-    @paid_orders = @current_merchant.get_orders_by_status(:paid)
+    if @status == "all"
+      @orders = @current_merchant.get_all_orders
+    else
+      @orders = @current_merchant.get_orders_by_status(@status)
+    end 
+    
     @paid_orders_revenue = @current_merchant.total_revenue(@paid_orders)
-
-    @completed_orders = @current_merchant.get_orders_by_status(:complete)
     @completed_orders_revenue = @current_merchant.total_revenue(@completed_orders)
-
-    @all_orders = @current_merchant.get_all_orders
     @total_revenue = @current_merchant.total_revenue(@all_orders)
   end 
 
@@ -51,4 +54,9 @@ class MerchantsController < ApplicationController
     @merchant = Merchant.find_by_id(params[:merchant_id])
     @merchant_products = @merchant.products 
   end
+
+  private
+  def status_param
+    params.permit(:status)[:status] || "all" 
+  end 
 end
