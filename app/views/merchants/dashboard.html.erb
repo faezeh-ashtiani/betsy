@@ -1,10 +1,10 @@
 <section class="all-merch-products">
   <div class='merch-products-header'>
-    <h2 > <%= "#{@current_merchant.username.upcase}"%> Dashboard </h2>
-    <p>Joined site on <%= @current_merchant.created_at.strftime("%B %e, %Y") %></p>
+    <h1 > <%= "#{@current_merchant.username.upcase}"%> Dashboard </h1>
+    <p>Joined site on <%= format_datetime(@current_merchant.created_at) %></p>
     <%= link_to "ADD NEW PRODUCT", new_product_path, class: "nav-link" %>
     <br>
-    <h3> Your Products </h3>
+    <h1> Your Products </h1>
   </div>
 
   <div class='merch-product-index'>
@@ -19,29 +19,34 @@
     <% end %>
   </div>
 
-  <div class="fulfilment-report">
-    <h3> Your Revenue Report </h3>
 
-    <h4> Total Revenue: </h4>
-    <%= format_currency(@total_revenue) %>
-
-    <h4> Total Revenue (paid orders): </h4>
-    <%= format_currency(@paid_orders_revenue) %>
-
-    <h4> Total Revenue (complete orders): </h4>
-    <%= format_currency(@completed_orders_revenue) %>
-
-    <h3> Your Orders </h3>
-    <%= render_merchant_orders(@current_merchant, @all_orders) %>
-    
-
-    <h4> Paid Orders: </h4>
-    <%= render_merchant_orders(@current_merchant, @paid_orders) %>
-    
-
-    <h4> Completed Orders: </h4>
-    <%= render_merchant_orders(@current_merchant, @completed_orders)  %>
-    
-  </div>
 </section>
 
+
+
+<div class="fulfilment-report">'
+<h1> Your Revenue Report </h1>
+
+<h4> Total Revenue: <%= format_currency(@total_revenue) %></h4>
+
+<h4> Total Revenue (paid orders): <%= format_currency(@paid_orders_revenue) %></h4>
+
+<h4> Total Revenue (complete orders): <%= format_currency(@completed_orders_revenue) %></h4>
+
+
+
+<h1>Your Orders</h1>
+
+<%= form_with url: merchant_dashboard_path, method: :post do |f| %>
+
+  <%=f.label :filter_by_status %>
+
+  <%= f.select :status, OrderStatus.optional_all.map{ |status| [status, status] }, {selected: @status}, onchange: "this.form.submit();" %>
+
+<% end %>
+
+
+<%= render_merchant_orders(@current_merchant, @orders) %>
+
+    
+</div>

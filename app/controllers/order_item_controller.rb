@@ -6,21 +6,24 @@ class OrderItemController < ApplicationController
       return redirect_to root_path
     end
 
-    if !Product.available?(params[:id], params[:post][:qty])
+    if !Product.available?(params["id"], params["post"]["qty"])
       flash[:error] = "Not enough in stock"
       return redirect_to root_path
     end 
 
     if session[:order_items]
-      order_item = session[:order_items].find { |order_item| order_item["product_id"] == params[:id].to_i }
+      order_item = session[:order_items].find { |order_item| order_item["product_id"] == params["id"].to_i }
       if !order_item
-        session[:order_items] << OrderItem.create!(qty: (params[:post][:qty]).to_i, product_id: params[:id])
+        session[:order_items] << OrderItem.create!(qty: (params["post"]["qty"]).to_i, product_id: params["id"])
       else
-        order_item.update(qty: (params[:post][:qty]).to_i) 
+        order_item["qty"] = params["post"]["qty"]
+        order_item = OrderItem.find_by(product_id: params["id"])
+        order_item.update_attributes!(qty: params["post"]["qty"].to_i) 
+        order_item.save
       end
     else
       session[:order_items] = []
-      session[:order_items] << OrderItem.create!(qty: params[:post][:qty], product_id: params[:id])
+      session[:order_items] << OrderItem.create!(qty: params["post"]["qty"], product_id: params["id"])
     end 
     flash[:status] = "Added to Cart!"
     redirect_to root_path
