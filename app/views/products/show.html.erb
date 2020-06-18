@@ -7,8 +7,8 @@
 
 <div class="show-content">
   <section class='reviews'>
-    <h5>Review & Rating</h4>
-    <h6>Overall Rating Based on <%= @reviews.length %> Review(s): <%= @product.average_rating %></h6>
+    <h3>Review & Rating</h3>
+    <h5>Average Rating: <%= @product.average_rating %> out of <%= @reviews.length %> Reviews </h5>
     <%= render partial: "reviews/rating", locals: { action_name: "Submit Review", product: @product } %>
     <% if @reviews.length != 0 %>
       <ul class="review-list">
@@ -25,16 +25,16 @@
   </section>
 
   <section>
-    <p> Left in Stock: <%= @product.qty %> </p> 
+    <h3> Left in Stock: <%= @product.qty %> </h3> 
     <%if !session[:order_items].nil? %>
       <% current_in_cart = OrderItem.current_edit(@product.id, session[:order_items]) %>
     <% else %>
       <%current_in_cart = " " %>
     <% end %>
-    <p> Current Quantity in Cart: <%= current_in_cart%>
-    <div class="form">
+    <h6> Current Quantity in Cart: <%= current_in_cart%></h6>
+    <div>
         <%= form_with scope: :post, url: add_to_cart_path do |f| %>
-          <div> 
+          <div class="form-group-product"> 
             <%= f.label "Quantity:"%>
             <%= f.text_field :qty, placeholder: current_in_cart %>
           </div>
