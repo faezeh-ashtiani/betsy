@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'products/index'
-
   root to: 'products#index'
 
   # oauth routes 
@@ -9,8 +7,7 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback", to: "merchants#create", as: 'callback'
   delete "/logout", to: "merchants#logout", as: "logout"
   
-  resources :merchants
-
+  resources :merchants, only: [:create]
   get 'merchant/dashboard', to: 'merchants#dashboard', as: 'merchant_dashboard'
 
   resources :products do
@@ -18,9 +15,8 @@ Rails.application.routes.draw do
   end
   resources :orders, only: [:new, :create, :show, :update]
   
-  resources :categories
+  resources :categories, only: [:new, :create]
   
-
   get '/categories/:category_id/products', to: 'products#category_products', as: 'category_products'
   get '/merchant/:merchant_id/products', to: 'merchants#merchant_products', as: 'merchant_products'
 
@@ -28,6 +24,4 @@ Rails.application.routes.draw do
   post 'products/:id/add-to-cart', to: 'order_item#add_to_cart', as: 'add_to_cart'  
   post 'guest/cart/remove', to: 'order_item#remove_from_cart', as: 'remove_from_cart'
   
-
-
 end
