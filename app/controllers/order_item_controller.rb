@@ -25,7 +25,7 @@ class OrderItemController < ApplicationController
       session[:order_items] << OrderItem.create!(qty: params[:post][:qty], product_id: params[:id])
     end 
     flash[:status] = "Added to Cart!"
-    redirect_to product_path(params[:id])
+    redirect_to root_path
   end 
 
   def remove_from_cart 
