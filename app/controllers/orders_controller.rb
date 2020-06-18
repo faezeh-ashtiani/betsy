@@ -12,6 +12,10 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params) 
     @order.status = "paid"
     if @order.save
+      if session[:order_items].nil?
+        flash[:error] = "Something went wrong!"
+        return redirect_to root_path
+      end 
       flash[:status] = "Order Placed!"
       session[:order_items].each do |item| 
         OrderItem.find_by(id: item["id"]).nil? ? next : @order.order_items << OrderItem.find_by(id: item["id"]) 
