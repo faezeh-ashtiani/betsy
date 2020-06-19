@@ -24,5 +24,12 @@ product3:
   qty: 50
   categories: 
   merchant: merchant1
-  
-  
+
+product4:
+  name: hat
+  price: 5.99
+  img_url: https://live.staticflickr.com/65535/49991751098_c017304fc3_m.jpg,
+  description: wear it
+  qty: 50
+  categories: 
+  merchant: merchant2

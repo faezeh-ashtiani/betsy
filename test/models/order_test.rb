@@ -18,7 +18,7 @@ describe Order do
       order = orders(:order1)
       order.order_items << order_items(:order_item1)
       expect(order.order_items[0]).must_respond_to :product_id
-      expect(order.order_items.length).must_equal 1
+      expect(order.order_items.length).must_equal 2
       order.order_items.each do |product|
         prod = Product.find_by(id: product.product_id)
         expect(prod).must_be_instance_of Product
