@@ -31,13 +31,15 @@ class Merchant < ApplicationRecord
   end
 
   def find_my_order_items(order)
+    return [] if order.nil?
     OrderItem.joins(:product).where(products: { merchant_id: self.id }, order_items: {order_id: order.id })
   end 
 
   def earnings_per_order(order)
     my_order_items = self.find_my_order_items(order)
-
     total_earnings = 0.00 
+
+    return total_earnings if order.nil?
 
     my_order_items.each do |item|
       product = Product.find_by(id: item.product_id)
@@ -52,9 +54,7 @@ class Merchant < ApplicationRecord
     total_order_items = []
     total_revenue = 0.00
 
-    if orders.nil?
-      return total_revenue
-    end
+    return total_revenue if orders.nil?
 
     orders.each do |order|
       my_order_items = self.find_my_order_items(order)
